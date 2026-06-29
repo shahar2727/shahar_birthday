@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>מזל טוב שחר!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        :root {
+            --primary: #80deea;
+            --primary-dark: #4dd0e1;
+            --primary-light: #e0f7fa;
+            --text-dark: #006064;
+            --text-light: #4f8a8f;
+            --bg-color: #f4fcff;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Fullscreen Overlays */
+        .overlay-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-light), var(--bg-color));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        input[type="password"] {
+            padding: 15px;
+            border-radius: 12px;
+            border: 2px solid var(--primary);
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 20px;
+            width: 80%;
+            max-width: 300px;
+            font-family: 'Heebo', sans-serif;
+        }
+
+        button {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(77, 208, 225, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: 'Heebo', sans-serif;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .timer-display {
+            font-size: 3rem;
+            font-weight: 800;
+            direction: ltr;
+            color: var(--text-dark);
+            margin: 20px 0;
+        }
+
+        /* Main Content Container */
+        #main-content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 20px 60px 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+        .hero h2 {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+
+        /* Media Sections */
+        .media-section {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 24px rgba(0, 188, 212, 0.08);
+            text-align: center;
+        }
+        video {
+            width: 100%;
+            border-radius: 12px;
+            max-height: 60vh;
+            background: #000;
+        }
+        audio {
+            width: 100%;
+            margin-top: 10px;
+        }
+        .instruction-text {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 8px;
+        }
+
+        /* Timeline Section */
+        .timeline-wrapper {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 10px 0 20px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .timeline-item {
+            background: var(--white);
+            padding: 15px 25px;
+            border-radius: 20px;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0, 188, 212, 0.08);
+            border: 1px solid var(--primary-light);
+            scroll-snap-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .lightbox img {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .lightbox .caption {
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Compliments */
+        .compliment-box {
+            background: var(--primary-light);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .compliment-text {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            min-height: 40px;
+            color: var(--text-dark);
+        }
+
+        /* Blessing Cards */
+        .blessing-container {
+            margin-bottom: 50px;
+        }
+        .blessing-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary);
+            font-size: 1.1rem;
+        }
+
+        /* Gifts Flip Cards Area */
+        .gifts-section {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 25px;
+            box-shadow: 0 8px 24px rgba(0, 188, 212, 0.08);
+            margin-bottom: 40px;
+        }
+        .gifts-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .gifts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 15px;
+        }
+        .flip-card {
+            background-color: transparent;
+            height: 140px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 16px;
+        }
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            font-size: 0.95rem;
+        }
+        .flip-card-front {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 800;
+        }
+        .flip-card-back {
+            background-color: var(--primary-light);
+            color: var(--text-dark);
+            transform: rotateY(180deg);
+            border: 2px solid var(--primary);
+            font-weight: 600;
+        }
+        .reset-btn {
+            display: block;
+            margin: 25px auto 0;
+            background-color: #fff;
+            color: var(--text-dark);
+            border: 2px solid var(--primary-dark);
+            font-size: 0.9rem;
+            padding: 8px 16px;
+        }
+
+        /* Confetti Canvas */
+        #confetti {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="confetti"></canvas>
+
+    <!-- Password Screen -->
+    <div id="password-screen" class="overlay-screen">
+        <h2 style="margin-bottom: 10px; color: var(--text-dark);">היי :)</h2>
+        <p style="margin-bottom: 20px; color: var(--text-light);">כדי להיכנס, הזיני את הסיסמה:</p>
+        <input type="password" id="pwd-input" placeholder="סיסמה">
+        <button type="button" onclick="checkPassword()">כניסה</button>
+        <p id="pwd-error" style="color: #ff6b6b; margin-top: 15px; display: none;">סיסמה שגויה, נסי שוב</p>
+    </div>
+
+    <!-- Countdown Screen -->
+    <div id="countdown-screen" class="overlay-screen hidden">
+        <h2 style="color: var(--text-dark);">האתר ייפתח בעוד:</h2>
+        <div class="timer-display" id="timer">00:00:00:00</div>
+        <p style="color: var(--text-light);">המתנה קטנה ששווה לחכות לה...</p>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="hidden">
+        
+        <div class="hero">
+            <h1>שחר פריד</h1>
+            <h2>חוגגת 20 · 30.07.2006</h2>
+            <button type="button" onclick="fireConfetti()">איזה כיף!</button>
+        </div>
+
+        <div class="media-section">
+            <h3 style="margin-bottom: 15px;">ברכה מוקלטת</h3>
+            <video controls playsinline poster="assets/placeholder.jpg">
+                <source src="assets/greeting.mp4" type="video/mp4">
+                הדפדפן לא תומך בווידאו.
+            </video>
+        </div>
+
+        <div class="media-section">
+            <h3 style="margin-bottom: 15px;">השיר שלנו</h3>
+            <audio controls>
+                <source src="assets/song.mp3" type="audio/mpeg">
+                הדפדפן לא תומך באודיו.
+            </audio>
+            <p class="instruction-text">לחצי על Play כדי להתחיל לנגן</p>
+        </div>
+
+        <h3 style="margin: 30px 0 10px;">רגעים שלנו</h3>
+        <div class="timeline-wrapper" id="timeline">
+            <!-- Timeline items generated by JS -->
+        </div>
+
+        <div class="compliment-box">
+            <h3 style="margin-bottom: 15px;">מחולל המחמאות</h3>
+            <div class="compliment-text" id="compliment-text">את מוכנה?</div>
+            <button type="button" onclick="generateCompliment()">תני לי עוד מחמאה</button>
+        </div>
+
+        <h3 style="margin: 40px 0 20px; text-align: center;">הברכה שלי אלייך</h3>
+        <div class="blessing-container" id="blessing-area">
+            <!-- Cards generated by JS -->
+        </div>
+
+        <div class="gifts-section">
+            <div class="gifts-header">
+                <h3>20 רמזים ל-20 מתנות</h3>
+                <p class="instruction-text">לחצי על הקלפים כדי לגלות את הרמזים. אל תדאגי, זה נשמר אם תצאי!</p>
+            </div>
+            <div class="gifts-grid" id="gifts-grid">
+                <!-- Gifts generated by JS -->
+            </div>
+            <button class="reset-btn" type="button" onclick="resetGifts()">איפוס קלפים</button>
+        </div>
+
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <img id="lightbox-img" src="" alt="Moment">
+        <div class="caption" id="lightbox-cap"></div>
+        <button type="button" onclick="closeLightbox()">סגירה</button>
+    </div>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // --- Config & Data ---
+        const SITE_PASSWORD = "147070";
+        const UNLOCK_DATE = new Date("2026-07-29T16:00:00").getTime();
+        
+        // טקסט הברכה. רווח כפול יפצל את הברכה לכרטיסיות נפרדות.
+        const BLESSING_TEXT = `
+שחר פריד היפה שלי,
+
+מזל טוב ליום ההולדת ה-20! 
+איזה גיל מרגש, מחליפים קידומת.
+
+[כאן תוכל להכניס את שאר הפסקאות של הברכה שלך]
+
+כל פסקה שתופרד בשורת רווח,
+תופיע באופן אוטומטי בכרטיסייה נפרדת ותיכנס באנימציה נעימה.
+
+אוהב המון, 
+אני.
+        `.trim();
+
+        const moments = [
+            { name: "ראש השנה", img: "assets/places/rosh-hashana.jpg", cap: "ראש השנה יחד" },
+            { name: "מסיבה אחרונה", img: "assets/places/party.jpg", cap: "מסיבה אחרונה שלנו" },
+            { name: "הקפצות", img: "assets/places/jump.jpg", cap: "הקפצות וצחוקים" },
+            { name: "ביקורים בבסיס", img: "assets/places/base.jpg", cap: "ביקורים בבסיס" },
+            { name: "נסיעות", img: "assets/places/drive.jpg", cap: "נסיעות משותפות" },
+            { name: "בית", img: "assets/places/home.jpg", cap: "הרגעים השקטים בבית" }
+            // הוסף עוד בהמשך כאן
+        ];
+
+        const compliments = [
+            "הכי יפה בעיר (ובכל מקום אחר)",
+            "מצחיקה ברמות שקשה לתאר",
+            "יש לך את הלב הכי ענק שיש",
+            "תמיד יודעת להרים אותי",
+            "החברה הכי טובה שיכולתי לבקש",
+            "אחת ויחידה, אין עוד כמוך",
+            "החיוך שלך עושה לי את היום"
+        ];
+
+        const hints = [
+            "איפה שעולים האחוזים",
+            "לא כל הנוצץ זהב, או שכן",
+            "יש לי הרבה דלתות אבל אף אחת לא מובילה החוצה",
+            "ביקרתי בי מקודם אבל במקום אחר",
+            "אל תשכחי לקחת אותי לפני שיוצאים",
+            "____ מי הכי יפה בעיר ?",
+            "כאן מתחיל כל בוקר",
+            "כשעייפים מגיעים אליי",
+            "איפה שהשמיים נכנסים לחדר",
+            "לפעמיים חם לפעמים טעים",
+            "אם הייתי יכול לדבר הייתי אומר לילה טוב",
+            "תמיד לשים לפני שיוצאים",
+            "אני קטן ועוזר לסדר הרבה",
+            "בלעדי קשה לצאת מהבית",
+            "חצי במטבח חצי בסלון",
+            "כולם אוהבים לשבת שם",
+            "בימים חמים אני עובד עוד",
+            "הכי חשוב לנסיעות לצבא",
+            "כל מי שרוצה אוויר הולך לשם",
+            "המקום עם הכי הרבה ידע שבו מתחיל כל סיפור ….."
+        ];
+
+        // --- Application Logic ---
+        
+        const urlParams = new URLSearchParams(window.location.search);
+        const isPreview = urlParams.get('preview') === '1';
+
+        function checkPassword() {
+            const val = document.getElementById('pwd-input').value;
+            if (val === SITE_PASSWORD) {
+                document.getElementById('password-screen').classList.add('hidden');
+                checkDateLimit();
+            } else {
+                document.getElementById('pwd-error').style.display = 'block';
+            }
+        }
+
+        function checkDateLimit() {
+            if (isPreview) {
+                initSite();
+                return;
+            }
+
+            const now = new Date().getTime();
+            if (now >= UNLOCK_DATE) {
+                initSite();
+            } else {
+                document.getElementById('countdown-screen').classList.remove('hidden');
+                startTimer();
+            }
+        }
+
+        function startTimer() {
+            const timerEl = document.getElementById('timer');
+            const interval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = UNLOCK_DATE - now;
+
+                if (distance < 0) {
+                    clearInterval(interval);
+                    document.getElementById('countdown-screen').classList.add('hidden');
+                    initSite();
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
