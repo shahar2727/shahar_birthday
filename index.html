@@ -1,506 +1,1855 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>מזל טוב שחר!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
-    <style>
-        :root {
-            --primary: #80deea;
-            --primary-dark: #4dd0e1;
-            --primary-light: #e0f7fa;
-            --text-dark: #006064;
-            --text-light: #4f8a8f;
-            --bg-color: #f4fcff;
-            --white: #ffffff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#bfefff" />
+  <title>יום הולדת שמח שחר 💙</title>
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
 
-        body {
-            font-family: 'Heebo', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+  <style>
+    :root {
+      --sky-50: #f4fcff;
+      --sky-100: #e5f8ff;
+      --sky-200: #c8f0ff;
+      --sky-300: #9ee3fb;
+      --sky-400: #63ccef;
+      --sky-500: #35b7df;
+      --sky-700: #157fa3;
+      --ink: #17445a;
+      --muted: #5f8291;
+      --white: #ffffff;
+      --card: rgba(255, 255, 255, 0.84);
+      --shadow: 0 18px 45px rgba(34, 146, 188, 0.16);
+      --shadow-soft: 0 10px 28px rgba(34, 146, 188, 0.12);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --safe-top: env(safe-area-inset-top);
+      --safe-bottom: env(safe-area-inset-bottom);
+    }
 
-        /* Fullscreen Overlays */
-        .overlay-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-light), var(--bg-color));
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            padding: 20px;
-            text-align: center;
-        }
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-        .hidden {
-            display: none !important;
-        }
+    html {
+      scroll-behavior: smooth;
+      min-height: 100%;
+      background: var(--sky-50);
+    }
 
-        input[type="password"] {
-            padding: 15px;
-            border-radius: 12px;
-            border: 2px solid var(--primary);
-            font-size: 1.2rem;
-            text-align: center;
-            margin-bottom: 20px;
-            width: 80%;
-            max-width: 300px;
-            font-family: 'Heebo', sans-serif;
-        }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: calc(var(--vh, 1vh) * 100);
+      font-family: "Heebo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 12%, rgba(158, 227, 251, 0.55), transparent 34%),
+        radial-gradient(circle at 82% 8%, rgba(200, 240, 255, 0.75), transparent 30%),
+        linear-gradient(180deg, #f7fdff 0%, #eaf9ff 45%, #ffffff 100%);
+      overflow-x: hidden;
+    }
 
-        button {
-            background-color: var(--primary-dark);
-            color: var(--white);
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(77, 208, 225, 0.4);
-            transition: transform 0.2s, box-shadow 0.2s;
-            font-family: 'Heebo', sans-serif;
-        }
+    body.no-scroll {
+      overflow: hidden;
+    }
 
-        button:active {
-            transform: scale(0.95);
-        }
+    button,
+    input,
+    textarea {
+      font-family: inherit;
+    }
 
-        .timer-display {
-            font-size: 3rem;
-            font-weight: 800;
-            direction: ltr;
-            color: var(--text-dark);
-            margin: 20px 0;
-        }
+    button {
+      cursor: pointer;
+    }
 
-        /* Main Content Container */
-        #main-content {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 0 20px 60px 20px;
-        }
+    img,
+    video {
+      max-width: 100%;
+      display: block;
+    }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 60px 0 40px;
-        }
-        .hero h1 {
-            font-size: 3rem;
-            color: var(--text-dark);
-            margin-bottom: 10px;
-        }
-        .hero h2 {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            font-weight: 400;
-            margin-bottom: 30px;
-        }
+    .hidden {
+      display: none !important;
+    }
 
-        /* Media Sections */
-        .media-section {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 8px 24px rgba(0, 188, 212, 0.08);
-            text-align: center;
-        }
-        video {
-            width: 100%;
-            border-radius: 12px;
-            max-height: 60vh;
-            background: #000;
-        }
-        audio {
-            width: 100%;
-            margin-top: 10px;
-        }
-        .instruction-text {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            margin-top: 8px;
-        }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
 
-        /* Timeline Section */
-        .timeline-wrapper {
-            display: flex;
-            overflow-x: auto;
-            gap: 15px;
-            padding: 10px 0 20px;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-        .timeline-item {
-            background: var(--white);
-            padding: 15px 25px;
-            border-radius: 20px;
-            white-space: nowrap;
-            box-shadow: 0 4px 12px rgba(0, 188, 212, 0.08);
-            border: 1px solid var(--primary-light);
-            scroll-snap-align: center;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
+    .screen {
+      position: fixed;
+      inset: 0;
+      min-height: 100vh;
+      min-height: calc(var(--vh, 1vh) * 100);
+      padding: calc(24px + var(--safe-top)) 18px calc(24px + var(--safe-bottom));
+      display: grid;
+      place-items: center;
+      z-index: 50;
+      background:
+        radial-gradient(circle at top left, rgba(158, 227, 251, 0.74), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(229, 248, 255, 0.92), transparent 38%),
+        linear-gradient(135deg, #f9feff, #e8f9ff);
+    }
 
-        /* Lightbox */
-        .lightbox {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 2000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-        }
-        .lightbox.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-        .lightbox img {
-            max-width: 100%;
-            max-height: 70vh;
-            object-fit: contain;
-            border-radius: 12px;
-            margin-bottom: 20px;
-        }
-        .lightbox .caption {
-            color: white;
-            font-size: 1.2rem;
-            text-align: center;
-            margin-bottom: 20px;
-        }
+    .gate-card,
+    .lock-card {
+      width: min(92vw, 430px);
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(99, 204, 239, 0.28);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 28px 22px;
+      text-align: center;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
 
-        /* Compliments */
-        .compliment-box {
-            background: var(--primary-light);
-            border-radius: 20px;
-            padding: 30px 20px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .compliment-text {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            min-height: 40px;
-            color: var(--text-dark);
-        }
+    .gate-icon {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 14px;
+      background: linear-gradient(145deg, #ffffff, #c8f0ff);
+      color: var(--sky-700);
+      font-size: 34px;
+      box-shadow: var(--shadow-soft);
+    }
 
-        /* Blessing Cards */
-        .blessing-container {
-            margin-bottom: 50px;
-        }
-        .blessing-card {
-            background: var(--white);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--primary);
-            font-size: 1.1rem;
-        }
+    .gate-card h1,
+    .lock-card h1 {
+      margin: 0 0 8px;
+      font-size: clamp(2rem, 9vw, 3rem);
+      line-height: 1.05;
+      color: var(--ink);
+    }
 
-        /* Gifts Flip Cards Area */
-        .gifts-section {
-            background: var(--white);
-            border-radius: 24px;
-            padding: 25px;
-            box-shadow: 0 8px 24px rgba(0, 188, 212, 0.08);
-            margin-bottom: 40px;
-        }
-        .gifts-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .gifts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 15px;
-        }
-        .flip-card {
-            background-color: transparent;
-            height: 140px;
-            perspective: 1000px;
-            cursor: pointer;
-        }
-        .flip-card-inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-            transition: transform 0.6s;
-            transform-style: preserve-3d;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-radius: 16px;
-        }
-        .flip-card.flipped .flip-card-inner {
-            transform: rotateY(180deg);
-        }
-        .flip-card-front, .flip-card-back {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-            font-size: 0.95rem;
-        }
-        .flip-card-front {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 800;
-        }
-        .flip-card-back {
-            background-color: var(--primary-light);
-            color: var(--text-dark);
-            transform: rotateY(180deg);
-            border: 2px solid var(--primary);
-            font-weight: 600;
-        }
-        .reset-btn {
-            display: block;
-            margin: 25px auto 0;
-            background-color: #fff;
-            color: var(--text-dark);
-            border: 2px solid var(--primary-dark);
-            font-size: 0.9rem;
-            padding: 8px 16px;
-        }
+    .gate-card p,
+    .lock-card p {
+      margin: 0 auto 18px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 1rem;
+    }
 
-        /* Confetti Canvas */
-        #confetti {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 9999;
-        }
-    </style>
+    .password-row {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .password-input {
+      width: 100%;
+      border: 1px solid rgba(21, 127, 163, 0.18);
+      border-radius: 18px;
+      padding: 15px 16px;
+      font-size: 1.08rem;
+      text-align: center;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.9);
+      outline: none;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+
+    .password-input:focus {
+      border-color: rgba(53, 183, 223, 0.75);
+      box-shadow: 0 0 0 4px rgba(99, 204, 239, 0.18);
+    }
+
+    .error-text {
+      min-height: 24px;
+      margin: 2px 0 0;
+      color: #b42318;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    .note {
+      margin-top: 14px;
+      font-size: 0.84rem;
+      color: rgba(23, 68, 90, 0.68);
+      line-height: 1.55;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 13px 20px;
+      color: var(--ink);
+      background: linear-gradient(135deg, #ffffff, var(--sky-200));
+      box-shadow: var(--shadow-soft);
+      font-size: 1rem;
+      font-weight: 800;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      touch-action: manipulation;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn:hover {
+      filter: brightness(1.02);
+      box-shadow: 0 14px 30px rgba(34, 146, 188, 0.18);
+    }
+
+    .btn.primary {
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--sky-500), #7bd8f4);
+      text-shadow: 0 1px 0 rgba(0,0,0,0.08);
+    }
+
+    .btn.secondary {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(99, 204, 239, 0.34);
+    }
+
+    .btn.small {
+      padding: 10px 14px;
+      font-size: 0.9rem;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 9px;
+      margin: 20px 0 16px;
+      direction: ltr;
+    }
+
+    .time-box {
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(99, 204, 239, 0.28);
+      border-radius: 18px;
+      padding: 12px 6px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .time-box strong {
+      display: block;
+      font-size: clamp(1.35rem, 7vw, 2rem);
+      line-height: 1;
+      color: var(--sky-700);
+    }
+
+    .time-box span {
+      display: block;
+      margin-top: 7px;
+      font-size: 0.78rem;
+      color: var(--muted);
+      direction: rtl;
+    }
+
+    .site {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .site.ready {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: calc(var(--vh, 1vh) * 100);
+      padding: calc(42px + var(--safe-top)) 18px calc(34px + var(--safe-bottom));
+      display: grid;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border-radius: 34px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.44)),
+        radial-gradient(circle at 22% 12%, rgba(99, 204, 239, 0.18), transparent 38%);
+      border: 1px solid rgba(99, 204, 239, 0.22);
+      z-index: 0;
+    }
+
+    .floating-bubble {
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.58);
+      border: 1px solid rgba(99,204,239,0.28);
+      box-shadow: var(--shadow-soft);
+      z-index: 0;
+      animation: floaty 8s ease-in-out infinite;
+    }
+
+    .bubble-1 {
+      width: 95px;
+      height: 95px;
+      top: 13%;
+      right: 8%;
+    }
+
+    .bubble-2 {
+      width: 58px;
+      height: 58px;
+      top: 24%;
+      left: 9%;
+      animation-delay: -2s;
+    }
+
+    .bubble-3 {
+      width: 130px;
+      height: 130px;
+      bottom: 9%;
+      left: 12%;
+      animation-delay: -4s;
+    }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-16px); }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(940px, 100%);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.78);
+      border: 1px solid rgba(99,204,239,0.28);
+      color: var(--sky-700);
+      font-weight: 800;
+      box-shadow: var(--shadow-soft);
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(3.3rem, 17vw, 7.6rem);
+      letter-spacing: -0.05em;
+      line-height: 0.92;
+      color: var(--ink);
+      text-wrap: balance;
+    }
+
+    .hero-subtitle {
+      margin: 18px auto 0;
+      font-size: clamp(1.1rem, 4.8vw, 1.55rem);
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .hero-message {
+      width: min(630px, 100%);
+      margin: 20px auto 0;
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(99,204,239,0.24);
+      line-height: 1.8;
+      box-shadow: var(--shadow-soft);
+      color: var(--ink);
+    }
+
+    .hero-actions {
+      margin: 24px auto 0;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .scroll-hint {
+      margin-top: 28px;
+      color: rgba(23, 68, 90, 0.68);
+      font-size: 0.95rem;
+      animation: nudge 1.8s ease-in-out infinite;
+    }
+
+    @keyframes nudge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(7px); }
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      padding: 18px 18px 54px;
+    }
+
+    .section {
+      width: min(980px, 100%);
+      margin: 0 auto 34px;
+      padding: 28px 18px;
+      border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid rgba(99, 204, 239, 0.22);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .section-header {
+      text-align: center;
+      margin: 0 auto 22px;
+      width: min(720px, 100%);
+    }
+
+    .section-kicker {
+      display: inline-block;
+      margin-bottom: 8px;
+      color: var(--sky-700);
+      font-size: 0.94rem;
+      font-weight: 800;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: clamp(1.75rem, 7vw, 3rem);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+
+    .section-header p {
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .media-card {
+      width: min(430px, 100%);
+      margin: 0 auto;
+      padding: 12px;
+      border-radius: 30px;
+      background: rgba(255,255,255,0.76);
+      border: 1px solid rgba(99,204,239,0.28);
+      box-shadow: var(--shadow-soft);
+    }
+
+    video {
+      width: 100%;
+      max-height: 78vh;
+      border-radius: 22px;
+      background: #dff7ff;
+      object-fit: contain;
+    }
+
+    .audio-card {
+      width: min(600px, 100%);
+      margin: 0 auto;
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(99,204,239,0.24);
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+    }
+
+    audio {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .ios-note {
+      margin: 12px 0 0;
+      font-size: 0.9rem;
+      color: rgba(23, 68, 90, 0.68);
+      line-height: 1.55;
+    }
+
+    .timeline-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 8px 2px 12px;
+      scrollbar-width: thin;
+    }
+
+    .timeline {
+      display: flex;
+      gap: 12px;
+      min-width: max-content;
+      padding: 4px 2px;
+    }
+
+    .moment-btn {
+      flex: 0 0 auto;
+      min-width: 138px;
+      border: 1px solid rgba(99,204,239,0.34);
+      border-radius: 999px;
+      padding: 13px 16px;
+      background: rgba(255,255,255,0.88);
+      color: var(--ink);
+      box-shadow: var(--shadow-soft);
+      font-weight: 800;
+      font-size: 0.98rem;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .moment-btn:active {
+      transform: scale(0.98);
+    }
+
+    .moment-btn:hover {
+      background: var(--sky-100);
+    }
+
+    .compliment-card {
+      width: min(650px, 100%);
+      margin: 0 auto;
+      padding: 24px 18px;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.76);
+      border: 1px solid rgba(99,204,239,0.28);
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+    }
+
+    .compliment-output {
+      min-height: 84px;
+      margin: 0 0 18px;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #ffffff, var(--sky-100));
+      color: var(--sky-700);
+      font-weight: 800;
+      font-size: clamp(1.2rem, 5vw, 1.8rem);
+      line-height: 1.35;
+    }
+
+    .blessing-list {
+      display: grid;
+      gap: 16px;
+      width: min(790px, 100%);
+      margin: 0 auto;
+    }
+
+    .blessing-card {
+      position: relative;
+      overflow: hidden;
+      padding: 22px 18px;
+      border-radius: 26px;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid rgba(99,204,239,0.24);
+      box-shadow: var(--shadow-soft);
+      line-height: 1.9;
+      font-size: 1.04rem;
+      white-space: pre-wrap;
+      transform-origin: center;
+    }
+
+    .blessing-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 0%, rgba(200,240,255,0.55) 45%, transparent 76%);
+      transform: translateX(110%);
+      pointer-events: none;
+    }
+
+    .blessing-card.is-visible::before {
+      animation: shine 1.1s ease both;
+    }
+
+    @keyframes shine {
+      from { transform: translateX(110%); }
+      to { transform: translateX(-110%); }
+    }
+
+    .hints-top {
+      display: grid;
+      gap: 12px;
+      align-items: center;
+      justify-items: center;
+      margin-bottom: 20px;
+    }
+
+    .progress-wrap {
+      width: min(520px, 100%);
+      padding: 12px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.76);
+      border: 1px solid rgba(99,204,239,0.22);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .progress-label {
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+      color: var(--muted);
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(200,240,255,0.8);
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--sky-400), var(--sky-700));
+      transition: width 0.35s ease;
+    }
+
+    .hints-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      width: min(900px, 100%);
+      margin: 0 auto;
+    }
+
+    .hint-card {
+      perspective: 1000px;
+      min-height: 154px;
+    }
+
+    .hint-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 154px;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      transform-style: preserve-3d;
+      transition: transform 0.55s ease;
+      cursor: pointer;
+    }
+
+    .hint-card.open .hint-inner {
+      transform: rotateY(180deg);
+    }
+
+    .hint-face {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 14px;
+      border-radius: 24px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border: 1px solid rgba(99,204,239,0.28);
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+    }
+
+    .hint-front {
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255,255,255,0.85), transparent 28%),
+        linear-gradient(135deg, #dff7ff, #ffffff);
+    }
+
+    .hint-back {
+      background: rgba(255,255,255,0.88);
+      transform: rotateY(180deg);
+    }
+
+    .hint-num {
+      display: block;
+      color: var(--sky-700);
+      font-size: 0.9rem;
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+
+    .hint-title {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--ink);
+      line-height: 1.25;
+    }
+
+    .hint-action {
+      margin-top: 9px;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+
+    .hint-text {
+      margin: 0;
+      color: var(--ink);
+      font-size: clamp(0.98rem, 4vw, 1.12rem);
+      font-weight: 800;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .final-card {
+      width: min(720px, 100%);
+      margin: 0 auto;
+      padding: 28px 18px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(229,248,255,0.84));
+      border: 1px solid rgba(99,204,239,0.28);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .final-card h2 {
+      font-size: clamp(2rem, 8vw, 3.2rem);
+    }
+
+    .final-card p {
+      margin: 14px auto 0;
+      color: var(--muted);
+      line-height: 1.8;
+      width: min(560px, 100%);
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: grid;
+      place-items: center;
+      padding: calc(18px + var(--safe-top)) 16px calc(18px + var(--safe-bottom));
+      background: rgba(10, 40, 55, 0.58);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .lightbox-panel {
+      width: min(94vw, 760px);
+      max-height: 90vh;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      background: rgba(255,255,255,0.94);
+      border: 1px solid rgba(200,240,255,0.8);
+      border-radius: 28px;
+      padding: 14px;
+      box-shadow: 0 24px 70px rgba(5, 48, 69, 0.28);
+    }
+
+    .lightbox-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 4px 4px 12px;
+    }
+
+    .lightbox-title {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .close-btn {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--sky-100);
+      color: var(--ink);
+      font-size: 24px;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .lightbox-media {
+      min-height: 220px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, var(--sky-100), #ffffff);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid rgba(99,204,239,0.18);
+    }
+
+    .lightbox-media img {
+      width: 100%;
+      max-height: 68vh;
+      object-fit: contain;
+      border-radius: 18px;
+    }
+
+    .missing-photo {
+      padding: 42px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .lightbox-caption {
+      margin: 14px 4px 2px;
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 1rem;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    .heart-layer {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -30px;
+      font-size: 18px;
+      color: var(--sky-500);
+      opacity: 0.8;
+      animation: heartRise var(--duration, 2.8s) ease-out forwards;
+      will-change: transform, opacity;
+    }
+
+    @keyframes heartRise {
+      0% {
+        transform: translate3d(0, 0, 0) scale(0.8) rotate(0deg);
+        opacity: 0;
+      }
+      12% {
+        opacity: 0.9;
+      }
+      100% {
+        transform: translate3d(var(--drift, 0px), -112vh, 0) scale(1.35) rotate(22deg);
+        opacity: 0;
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+
+    footer {
+      padding: 10px 18px calc(34px + var(--safe-bottom));
+      text-align: center;
+      color: rgba(23, 68, 90, 0.6);
+      font-size: 0.9rem;
+    }
+
+    @media (min-width: 760px) {
+      main {
+        padding-inline: 26px;
+      }
+
+      .section {
+        padding: 40px 34px;
+        margin-bottom: 42px;
+      }
+
+      .hints-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .hint-card,
+      .hint-inner {
+        min-height: 174px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .gate-card,
+      .lock-card {
+        padding-inline: 18px;
+      }
+
+      .section {
+        padding-inline: 14px;
+      }
+
+      .hints-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .hint-card,
+      .hint-inner {
+        min-height: 156px;
+      }
+
+      .hint-face {
+        padding: 11px;
+        border-radius: 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
 </head>
-<body>
 
-    <canvas id="confetti"></canvas>
+<body class="no-scroll">
+  <div class="heart-layer" id="heartLayer" aria-hidden="true"></div>
 
-    <!-- Password Screen -->
-    <div id="password-screen" class="overlay-screen">
-        <h2 style="margin-bottom: 10px; color: var(--text-dark);">היי :)</h2>
-        <p style="margin-bottom: 20px; color: var(--text-light);">כדי להיכנס, הזיני את הסיסמה:</p>
-        <input type="password" id="pwd-input" placeholder="סיסמה">
-        <button type="button" onclick="checkPassword()">כניסה</button>
-        <p id="pwd-error" style="color: #ff6b6b; margin-top: 15px; display: none;">סיסמה שגויה, נסי שוב</p>
+  <section class="screen" id="passwordScreen" aria-labelledby="passwordTitle">
+    <div class="gate-card">
+      <div class="gate-icon" aria-hidden="true">♡</div>
+      <h1 id="passwordTitle">רגע לפני ההפתעה</h1>
+      <p>
+        כדי להיכנס לאתר יום ההולדת של שחר, צריך להקליד את הסיסמה הקטנה שלנו.
+      </p>
+
+      <form id="passwordForm" class="password-row" autocomplete="off">
+        <label class="sr-only" for="passwordInput">סיסמה</label>
+        <input
+          id="passwordInput"
+          class="password-input"
+          type="password"
+          inputmode="numeric"
+          placeholder="הקלידי סיסמה"
+          autocomplete="off"
+          required
+        />
+        <button class="btn primary" type="submit">כניסה להפתעה</button>
+        <p class="error-text" id="passwordError" role="alert"></p>
+      </form>
+
+      <p class="note">
+        הערה: הסיסמה נשמרת כ־SHA-256 בצד לקוח. זו חסימה בסיסית ונחמדה לאתר אישי,
+        לא מנגנון אבטחה אמיתי.
+      </p>
     </div>
+  </section>
 
-    <!-- Countdown Screen -->
-    <div id="countdown-screen" class="overlay-screen hidden">
-        <h2 style="color: var(--text-dark);">האתר ייפתח בעוד:</h2>
-        <div class="timer-display" id="timer">00:00:00:00</div>
-        <p style="color: var(--text-light);">המתנה קטנה ששווה לחכות לה...</p>
+  <section class="screen hidden" id="lockScreen" aria-labelledby="lockTitle">
+    <div class="lock-card">
+      <div class="gate-icon" aria-hidden="true">⏳</div>
+      <h1 id="lockTitle">עוד לא הגיע הזמן</h1>
+      <p>
+        ההפתעה כבר מוכנה, אבל היא תיפתח בדיוק בזמן.
+      </p>
+
+      <div class="countdown" aria-label="ספירה לאחור לפתיחת האתר">
+        <div class="time-box">
+          <strong id="days">00</strong>
+          <span>ימים</span>
+        </div>
+        <div class="time-box">
+          <strong id="hours">00</strong>
+          <span>שעות</span>
+        </div>
+        <div class="time-box">
+          <strong id="minutes">00</strong>
+          <span>דקות</span>
+        </div>
+        <div class="time-box">
+          <strong id="seconds">00</strong>
+          <span>שניות</span>
+        </div>
+      </div>
+
+      <p class="note">
+        למצב בדיקה אפשר להוסיף לכתובת:
+        <strong>?preview=1</strong>
+      </p>
     </div>
+  </section>
 
-    <!-- Main Content -->
-    <div id="main-content" class="hidden">
-        
-        <div class="hero">
-            <h1>שחר פריד</h1>
-            <h2>חוגגת 20 · 30.07.2006</h2>
-            <button type="button" onclick="fireConfetti()">איזה כיף!</button>
+  <div class="site hidden" id="site">
+    <header class="hero" id="top">
+      <span class="floating-bubble bubble-1" aria-hidden="true"></span>
+      <span class="floating-bubble bubble-2" aria-hidden="true"></span>
+      <span class="floating-bubble bubble-3" aria-hidden="true"></span>
+
+      <div class="hero-inner">
+        <div class="eyebrow">יום הולדת שמח לאהובה שלי</div>
+        <h1>שחר פריד</h1>
+        <p class="hero-subtitle">חוגגת 20 · 30.7.2006</p>
+
+        <div class="hero-message">
+          יש פה קצת זיכרונות, קצת צחוקים, קצת רמזים, וקצת יותר מדי השקעה —
+          אבל רק כי מגיע לך.
         </div>
 
-        <div class="media-section">
-            <h3 style="margin-bottom: 15px;">ברכה מוקלטת</h3>
-            <video controls playsinline poster="assets/placeholder.jpg">
-                <source src="assets/greeting.mp4" type="video/mp4">
-                הדפדפן לא תומך בווידאו.
-            </video>
+        <div class="hero-actions">
+          <button class="btn primary" type="button" id="openSurpriseBtn">פתחי את ההפתעה</button>
+          <button class="btn secondary" type="button" id="playSongBtn">נגן את השיר</button>
         </div>
 
-        <div class="media-section">
-            <h3 style="margin-bottom: 15px;">השיר שלנו</h3>
-            <audio controls>
-                <source src="assets/song.mp3" type="audio/mpeg">
-                הדפדפן לא תומך באודיו.
-            </audio>
-            <p class="instruction-text">לחצי על Play כדי להתחיל לנגן</p>
+        <div class="scroll-hint" aria-hidden="true">גללי למטה ↓</div>
+      </div>
+    </header>
+
+    <main>
+      <section class="section reveal" id="videoSection">
+        <div class="section-header">
+          <span class="section-kicker">קודם כל</span>
+          <h2>סרטון ברכה קטן</h2>
+          <p>
+            בלי הפעלה אוטומטית, כי אייפון אוהב שמבקשים ממנו יפה.
+          </p>
         </div>
 
-        <h3 style="margin: 30px 0 10px;">רגעים שלנו</h3>
-        <div class="timeline-wrapper" id="timeline">
-            <!-- Timeline items generated by JS -->
+        <div class="media-card">
+          <video
+            controls
+            playsinline
+            preload="metadata"
+            poster=""
+            aria-label="סרטון ברכה"
+          >
+            <source src="assets/greeting.mp4" type="video/mp4" />
+            הדפדפן שלך לא תומך בניגון וידאו.
+          </video>
+        </div>
+      </section>
+
+      <section class="section reveal" id="musicSection">
+        <div class="section-header">
+          <span class="section-kicker">ברקע</span>
+          <h2>השיר שלנו להיום</h2>
+          <p>
+            לחצי Play כשאת מוכנה להיכנס לאווירה.
+          </p>
         </div>
 
-        <div class="compliment-box">
-            <h3 style="margin-bottom: 15px;">מחולל המחמאות</h3>
-            <div class="compliment-text" id="compliment-text">את מוכנה?</div>
-            <button type="button" onclick="generateCompliment()">תני לי עוד מחמאה</button>
+        <div class="audio-card">
+          <audio id="songPlayer" controls preload="metadata">
+            <source src="assets/song.mp3" type="audio/mpeg" />
+            הדפדפן שלך לא תומך בניגון אודיו.
+          </audio>
+          <p class="ios-note">
+            באייפון צריך ללחוץ בעצמך על ניגון. זה בכוונה, כדי שהכול יעבוד חלק ב־Safari.
+          </p>
+        </div>
+      </section>
+
+      <section class="section reveal" id="momentsSection">
+        <div class="section-header">
+          <span class="section-kicker">הזיכרונות שלנו</span>
+          <h2>רגעים ומקומות שלנו</h2>
+          <p>
+            לחצי על רגע כדי לפתוח תמונה ותיאור. בהמשך אפשר להחליף את התמונות והטקסטים בקלות.
+          </p>
         </div>
 
-        <h3 style="margin: 40px 0 20px; text-align: center;">הברכה שלי אלייך</h3>
-        <div class="blessing-container" id="blessing-area">
-            <!-- Cards generated by JS -->
+        <div class="timeline-wrap" aria-label="טיימליין רגעים ומקומות">
+          <div class="timeline">
+            <button class="moment-btn" type="button" data-title="ראש השנה" data-photo="assets/places/place-1.jpg" data-cap="[תיאור קצר של ראש השנה]">ראש השנה</button>
+            <button class="moment-btn" type="button" data-title="מסיבה אחרונה" data-photo="assets/places/place-2.jpg" data-cap="[תיאור קצר של המסיבה האחרונה]">מסיבה אחרונה</button>
+            <button class="moment-btn" type="button" data-title="הקפצות" data-photo="assets/places/place-3.jpg" data-cap="[תיאור קצר של ההקפצות]">הקפצות</button>
+            <button class="moment-btn" type="button" data-title="ביקורים בבסיס" data-photo="assets/places/place-4.jpg" data-cap="[תיאור קצר של הביקורים בבסיס]">ביקורים בבסיס</button>
+            <button class="moment-btn" type="button" data-title="נסיעות" data-photo="assets/places/place-5.jpg" data-cap="[תיאור קצר של הנסיעות]">נסיעות</button>
+            <button class="moment-btn" type="button" data-title="בית" data-photo="assets/places/place-6.jpg" data-cap="[תיאור קצר של הבית]">בית</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section reveal" id="complimentsSection">
+        <div class="section-header">
+          <span class="section-kicker">כי צריך להזכיר לך</span>
+          <h2>מחולל מחמאות</h2>
+          <p>
+            כל לחיצה מזכירה עוד סיבה אחת למה את הכי את.
+          </p>
         </div>
 
-        <div class="gifts-section">
-            <div class="gifts-header">
-                <h3>20 רמזים ל-20 מתנות</h3>
-                <p class="instruction-text">לחצי על הקלפים כדי לגלות את הרמזים. אל תדאגי, זה נשמר אם תצאי!</p>
+        <div class="compliment-card">
+          <div class="compliment-output" id="complimentOutput">
+            לחצי ותקבלי מחמאה
+          </div>
+          <button class="btn primary" type="button" id="complimentBtn">תני לי מחמאה</button>
+        </div>
+      </section>
+
+      <section class="section reveal" id="blessingSection">
+        <div class="section-header">
+          <span class="section-kicker">המילים עצמן</span>
+          <h2>הברכה</h2>
+          <p>
+            כאן תיכנס הברכה המלאה. שורות ריקות יהפכו אוטומטית לכרטיסים נפרדים.
+          </p>
+        </div>
+
+        <div class="blessing-list" id="blessingList"></div>
+      </section>
+
+      <section class="section reveal" id="hintsSection">
+        <div class="section-header">
+          <span class="section-kicker">המשחק מתחיל</span>
+          <h2>מפת הרמזים של המתנות</h2>
+          <p>
+            20 כרטיסיות. בכל אחת יש רמז למתנה אחרת. המתנה עצמה לא כתובה כאן —
+            צריך להבין לבד, וזה כל הכיף.
+          </p>
+        </div>
+
+        <div class="hints-top">
+          <div class="progress-wrap" aria-label="התקדמות פתיחת רמזים">
+            <p class="progress-label" id="hintProgressText">נפתחו 0 מתוך 20 רמזים</p>
+            <div class="progress-track">
+              <div class="progress-bar" id="hintProgressBar"></div>
             </div>
-            <div class="gifts-grid" id="gifts-grid">
-                <!-- Gifts generated by JS -->
-            </div>
-            <button class="reset-btn" type="button" onclick="resetGifts()">איפוס קלפים</button>
+          </div>
+
+          <button class="btn secondary small" type="button" id="resetHintsBtn">איפוס הרמזים</button>
         </div>
 
-    </div>
+        <div class="hints-grid" id="hintsGrid"></div>
+      </section>
 
-    <!-- Lightbox -->
-    <div class="lightbox" id="lightbox">
-        <img id="lightbox-img" src="" alt="Moment">
-        <div class="caption" id="lightbox-cap"></div>
-        <button type="button" onclick="closeLightbox()">סגירה</button>
-    </div>
+      <section class="section reveal" id="finalSection">
+        <div class="final-card">
+          <span class="section-kicker">ולסיום</span>
+          <h2>מזל טוב אהובה שלי</h2>
+          <p>
+            שתהיה לך שנה מצחיקה, יפה, מרגשת, מלאה בדברים טובים,
+            ובעיקר מלאה ברגעים שנזכור גם באתר הבא.
+          </p>
+          <div class="hero-actions">
+            <button class="btn primary" type="button" id="finalHeartsBtn">עוד קצת לבבות</button>
+            <a class="btn secondary" href="#top" style="text-decoration:none;">חזרה להתחלה</a>
+          </div>
+        </div>
+      </section>
+    </main>
 
-    <script>
+    <footer>
+      נבנה באהבה ליום הולדת 20 של שחר
+    </footer>
+  </div>
+
+  <div class="lightbox hidden" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
+    <div class="lightbox-panel">
+      <div class="lightbox-top">
+        <h3 class="lightbox-title" id="lightboxTitle">רגע שלנו</h3>
+        <button class="close-btn" type="button" id="closeLightbox" aria-label="סגירת תמונה">×</button>
+      </div>
+
+      <div class="lightbox-media" id="lightboxMedia">
+        <img id="lightboxImg" src="" alt="" />
+        <div class="missing-photo hidden" id="missingPhoto">תמונה תעלה בהמשך</div>
+      </div>
+
+      <p class="lightbox-caption" id="lightboxCaption"></p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
+  <script>
+    "use strict";
+
+    const CONFIG = {
+      celebrantName: "שחר פריד",
+      age: "20",
+      birthdayDisplay: "30.7.2006",
+      unlockDate: "2026-07-29T16:00:00+03:00",
+      passwordHash: "19256e0039df1f0534c059e01d641f93f20f146d7acb22325bc04ff71907cbed",
+      storagePrefix: "birthday_shahar_2026_",
+      previewParam: "preview"
+    };
+
+    const BLESSING_TEXT = `[BLESSING_TEXT]`;
+
+    const compliments = [
+      "הכי יפה כשאת צוחקת",
+      "לב ענק בגוף קטן",
+      "יש לך חיוך שמסדר יום שלם",
+      "הכי כיף לדבר איתך, גם על כלום",
+      "את מצחיקה גם כשאת לא מנסה",
+      "החברה והאהובה שכל אחד היה רוצה לידו",
+      "גורמת לכל מקום להרגיש יותר בית",
+      "את שילוב נדיר של יופי, שטויות ולב",
+      "אחת ויחידה, באמת",
+      "גם כשאת מעצבנת — את עדיין הכי מתוקה",
+      "יש לך אנרגיה שאי אפשר להחליף",
+      "את הסיבה שהרבה רגעים רגילים הפכו לזיכרונות"
+    ];
+
+    const moments = [
+      {
+        title: "ראש השנה",
+        photo: "assets/places/place-1.jpg",
+        caption: "[תיאור קצר של ראש השנה]"
+      },
+      {
+        title: "מסיבה אחרונה",
+        photo: "assets/places/place-2.jpg",
+        caption: "[תיאור קצר של המסיבה האחרונה]"
+      },
+      {
+        title: "הקפצות",
+        photo: "assets/places/place-3.jpg",
+        caption: "[תיאור קצר של ההקפצות]"
+      },
+      {
+        title: "ביקורים בבסיס",
+        photo: "assets/places/place-4.jpg",
+        caption: "[תיאור קצר של הביקורים בבסיס]"
+      },
+      {
+        title: "נסיעות",
+        photo: "assets/places/place-5.jpg",
+        caption: "[תיאור קצר של הנסיעות]"
+      },
+      {
+        title: "בית",
+        photo: "assets/places/place-6.jpg",
+        caption: "[תיאור קצר של הבית]"
+      }
+    ];
+
+    const giftHints = [
+      "איפה שעולים האחוזים",
+      "לא כל הנוצץ זהב, או שכן",
+      "יש לי הרבה דלתות אבל אף אחת לא מובילה החוצה",
+      "ביקרתי בי מקודם אבל במקום אחר",
+      "אל תשכחי לקחת אותי לפני שיוצאים",
+      "____ מי הכי יפה בעיר?",
+      "כאן מתחיל כל בוקר",
+      "כשעייפים מגיעים אליי",
+      "איפה שהשמיים נכנסים לחדר",
+      "לפעמים חם לפעמים טעים",
+      "אם הייתי יכול לדבר הייתי אומר לילה טוב",
+      "תמיד לשים לפני שיוצאים",
+      "אני קטן ועוזר לסדר הרבה",
+      "בלעדי קשה לצאת מהבית",
+      "חצי במטבח חצי בסלון",
+      "כולם אוהבים לשבת שם",
+      "בימים חמים אני עובד עוד",
+      "הכי חשוב לנסיעות לצבא",
+      "כל מי שרוצה אוויר הולך לשם",
+      "המקום עם הכי הרבה ידע שבו מתחיל כל סיפור…"
+    ];
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isPreview = new URLSearchParams(window.location.search).get(CONFIG.previewParam) === "1";
+
+    const $ = (selector, scope = document) => scope.querySelector(selector);
+    const $$ = (selector, scope = document) => Array.from(scope.querySelectorAll(selector));
+
+    const els = {
+      body: document.body,
+      passwordScreen: $("#passwordScreen"),
+      lockScreen: $("#lockScreen"),
+      passwordForm: $("#passwordForm"),
+      passwordInput: $("#passwordInput"),
+      passwordError: $("#passwordError"),
+      site: $("#site"),
+      days: $("#days"),
+      hours: $("#hours"),
+      minutes: $("#minutes"),
+      seconds: $("#seconds"),
+      openSurpriseBtn: $("#openSurpriseBtn"),
+      playSongBtn: $("#playSongBtn"),
+      songPlayer: $("#songPlayer"),
+      complimentBtn: $("#complimentBtn"),
+      complimentOutput: $("#complimentOutput"),
+      blessingList: $("#blessingList"),
+      hintsGrid: $("#hintsGrid"),
+      hintProgressText: $("#hintProgressText"),
+      hintProgressBar: $("#hintProgressBar"),
+      resetHintsBtn: $("#resetHintsBtn"),
+      finalHeartsBtn: $("#finalHeartsBtn"),
+      heartLayer: $("#heartLayer"),
+      lightbox: $("#lightbox"),
+      lightboxTitle: $("#lightboxTitle"),
+      lightboxImg: $("#lightboxImg"),
+      lightboxCaption: $("#lightboxCaption"),
+      closeLightbox: $("#closeLightbox"),
+      missingPhoto: $("#missingPhoto")
+    };
+
+    function setViewportHeight() {
+      document.documentElement.style.setProperty("--vh", `${window.innerHeight * 0.01}px`);
+    }
+
+    setViewportHeight();
+    window.addEventListener("resize", setViewportHeight, { passive: true });
+    window.addEventListener("orientationchange", () => {
+      setTimeout(setViewportHeight, 250);
+    }, { passive: true });
+
+    function storageKey(name) {
+      return `${CONFIG.storagePrefix}${name}`;
+    }
+
+    async function sha256(text) {
+      const data = new TextEncoder().encode(text);
+      const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+      return Array.from(new Uint8Array(hashBuffer))
+        .map(byte => byte.toString(16).padStart(2, "0"))
+        .join("");
+    }
+
+    function isUnlockedByDate() {
+      if (isPreview) return true;
+      return Date.now() >= new Date(CONFIG.unlockDate).getTime();
+    }
+
+    function showPasswordScreen() {
+      els.passwordScreen.classList.remove("hidden");
+      els.lockScreen.classList.add("hidden");
+      els.site.classList.add("hidden");
+      els.body.classList.add("no-scroll");
+
+      setTimeout(() => {
+        els.passwordInput.focus({ preventScroll: true });
+      }, 300);
+    }
+
+    function showLockScreen() {
+      els.passwordScreen.classList.add("hidden");
+      els.lockScreen.classList.remove("hidden");
+      els.site.classList.add("hidden");
+      els.body.classList.add("no-scroll");
+      startCountdown();
+    }
+
+    function showSite() {
+      els.passwordScreen.classList.add("hidden");
+      els.lockScreen.classList.add("hidden");
+      els.site.classList.remove("hidden");
+      els.body.classList.remove("no-scroll");
+
+      requestAnimationFrame(() => {
+        els.site.classList.add("ready");
+        createHearts(24);
+        initAnimations();
+      });
+    }
+
+    let countdownInterval = null;
+
+    function startCountdown() {
+      clearInterval(countdownInterval);
+
+      const update = () => {
+        const target = new Date(CONFIG.unlockDate).getTime();
+        const diff = target - Date.now();
+
+        if (diff <= 0) {
+          clearInterval(countdownInterval);
+          showSite();
+          return;
+        }
+
+        const totalSeconds = Math.floor(diff / 1000);
+        const days = Math.floor(totalSeconds / 86400);
+        const hours = Math.floor((totalSeconds % 86400) / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = totalSeconds % 60;
+
+        els.days.textContent = String(days).padStart(2, "0");
+        els.hours.textContent = String(hours).padStart(2, "0");
+        els.minutes.textContent = String(minutes).padStart(2, "0");
+        els.seconds.textContent = String(seconds).padStart(2, "0");
+      };
+
+      update();
+      countdownInterval = window.setInterval(update, 1000);
+    }
+
+    els.passwordForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const password = els.passwordInput.value.trim();
+      els.passwordError.textContent = "";
+
+      if (!password) {
+        els.passwordError.textContent = "צריך להקליד סיסמה.";
+        return;
+      }
+
+      try {
+        const hash = await sha256(password);
+
+        if (hash !== CONFIG.passwordHash) {
+          els.passwordError.textContent = "הסיסמה לא נכונה. נסי שוב.";
+          els.passwordInput.select();
+          return;
+        }
+
+        sessionStorage.setItem(storageKey("passedPassword"), "1");
+
+        if (isUnlockedByDate()) {
+          showSite();
+        } else {
+          showLockScreen();
+        }
+      } catch (error) {
+        els.passwordError.textContent = "משהו השתבש בבדיקת הסיסמה. נסי שוב.";
+      }
+    });
+
+    function initGate() {
+      const passedPassword = sessionStorage.getItem(storageKey("passedPassword")) === "1";
+
+      if (!passedPassword) {
+        showPasswordScreen();
+        return;
+      }
+
+      if (isUnlockedByDate()) {
+        showSite();
+      } else {
+        showLockScreen();
+      }
+    }
+
+    function scrollToSection(id) {
+      const section = document.getElementById(id);
+      if (!section) return;
+      section.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+    }
+
+    els.openSurpriseBtn.addEventListener("click", () => {
+      createHearts(18);
+      scrollToSection("videoSection");
+    });
+
+    els.playSongBtn.addEventListener("click", async () => {
+      scrollToSection("musicSection");
+
+      try {
+        await els.songPlayer.play();
+        createHearts(12);
+      } catch (error) {
+        // Safari iOS may require pressing the native audio control.
+      }
+    });
+
+    function setupTimeline() {
+      const buttons = $$(".moment-btn");
+
+      buttons.forEach((button, index) => {
+        const moment = moments[index];
+
+        if (moment) {
+          button.dataset.title = moment.title;
+          button.dataset.photo = moment.photo;
+          button.dataset.cap = moment.caption;
+          button.textContent = moment.title;
+        }
+
+        button.addEventListener("click", () => {
+          openLightbox({
+            title: button.dataset.title || "רגע שלנו",
+            photo: button.dataset.photo || "",
+            caption: button.dataset.cap || "[תיאור קצר של הרגע]"
+          });
+        });
+      });
+    }
+
+    function openLightbox({ title, photo, caption }) {
+      els.lightboxTitle.textContent = title;
+      els.lightboxCaption.textContent = caption;
+      els.lightboxImg.alt = title;
+      els.lightboxImg.classList.remove("hidden");
+      els.missingPhoto.classList.add("hidden");
+
+      els.lightboxImg.onerror = () => {
+        els.lightboxImg.classList.add("hidden");
+        els.missingPhoto.classList.remove("hidden");
+      };
+
+      els.lightboxImg.onload = () => {
+        els.lightboxImg.classList.remove("hidden");
+        els.missingPhoto.classList.add("hidden");
+      };
+
+      els.lightboxImg.src = photo;
+      els.lightbox.classList.remove("hidden");
+      els.body.classList.add("no-scroll");
+      createHearts(8);
+    }
+
+    function closeLightbox() {
+      els.lightbox.classList.add("hidden");
+      els.body.classList.remove("no-scroll");
+      els.lightboxImg.src = "";
+    }
+
+    els.closeLightbox.addEventListener("click", closeLightbox);
+
+    els.lightbox.addEventListener("click", (event) => {
+      if (event.target === els.lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !els.lightbox.classList.contains("hidden")) {
+        closeLightbox();
+      }
+    });
+
+    let complimentIndex = -1;
+
+    function showCompliment() {
+      if (!compliments.length) return;
+
+      let nextIndex = Math.floor(Math.random() * compliments.length);
+
+      if (compliments.length > 1) {
+        while (nextIndex === complimentIndex) {
+          nextIndex = Math.floor(Math.random() * compliments.length);
+        }
+      }
+
+      complimentIndex = nextIndex;
+      els.complimentOutput.textContent = compliments[nextIndex];
+      createHearts(10);
+
+      if (!prefersReducedMotion && window.gsap) {
+        gsap.fromTo(
+          els.complimentOutput,
+          { scale: 0.94, opacity: 0.3 },
+          { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(1.6)" }
+        );
+      }
+    }
+
+    els.complimentBtn.addEventListener("click", showCompliment);
+
+    function renderBlessing() {
+      const fallback = `[BLESSING_TEXT]`;
+
+      const text = (BLESSING_TEXT || fallback).trim();
+      const parts = text
+        .split(/\n\s*\n/g)
+        .map(part => part.trim())
+        .filter(Boolean);
+
+      const finalParts = parts.length ? parts : [fallback];
+
+      els.blessingList.innerHTML = finalParts
+        .map((part, index) => {
+          const effect = ["fade-up", "flip", "scale", "reveal", "sparkle", "finale"][index % 6];
+          return `
+            <article class="blessing-card reveal" data-effect="${effect}">
+              ${escapeHtml(part)}
+            </article>
+          `;
+        })
+        .join("");
+    }
+
+    function escapeHtml(text) {
+      return text
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function shuffle(array) {
+      const copy = [...array];
+
+      for (let i = copy.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+
+      return copy;
+    }
+
+    function getHintOrder() {
+      const existing = localStorage.getItem(storageKey("hintOrder"));
+
+      if (existing) {
+        try {
+          const parsed = JSON.parse(existing);
+
+          if (Array.isArray(parsed) && parsed.length === giftHints.length) {
+            return parsed;
+          }
+        } catch (error) {
+          localStorage.removeItem(storageKey("hintOrder"));
+        }
+      }
+
+      const order = shuffle(giftHints.map((_, index) => index));
+      localStorage.setItem(storageKey("hintOrder"), JSON.stringify(order));
+      return order;
+    }
+
+    function getOpenedHints() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(storageKey("openedHints")) || "[]");
+        return new Set(Array.isArray(parsed) ? parsed : []);
+      } catch (error) {
+        return new Set();
+      }
+    }
+
+    function saveOpenedHints(openedSet) {
+      localStorage.setItem(storageKey("openedHints"), JSON.stringify([...openedSet]));
+    }
+
+    function updateHintProgress() {
+      const opened = getOpenedHints();
+      const total = giftHints.length;
+      const count = opened.size;
+      const percent = Math.round((count / total) * 100);
+
+      els.hintProgressText.textContent = `נפתחו ${count} מתוך ${total} רמזים`;
+      els.hintProgressBar.style.width = `${percent}%`;
+    }
+
+    function renderHints() {
+      const order = getHintOrder();
+      const opened = getOpenedHints();
+
+      els.hintsGrid.innerHTML = order.map((hintIndex, cardPosition) => {
+        const isOpen = opened.has(hintIndex);
+        const hintText = giftHints[hintIndex];
+
+        return `
+          <div class="hint-card reveal ${isOpen ? "open" : ""}" data-hint-index="${hintIndex}">
+            <button class="hint-inner" type="button" aria-label="פתיחת רמז מספר ${cardPosition + 1}">
+              <span class="hint-face hint-front">
+                <span>
+                  <span class="hint-num">רמז ${cardPosition + 1}</span>
+                  <span class="hint-title">פתחי אותי</span>
+                  <span class="hint-action">לחיצה קטנה והרמז נפתח</span>
+                </span>
+              </span>
+
+              <span class="hint-face hint-back">
+                <span>
+                  <span class="hint-num">הרמז שלך</span>
+                  <span class="hint-text">${escapeHtml(hintText)}</span>
+                </span>
+              </span>
+            </button>
+          </div>
+        `;
+      }).join("");
+
+      $$(".hint-card", els.hintsGrid).forEach((card) => {
+        const button = $(".hint-inner", card);
+
+        button.addEventListener("click", () => {
+          const hintIndex = Number(card.dataset.hintIndex);
+          const openedNow = getOpenedHints();
+
+          if (!openedNow.has(hintIndex)) {
+            openedNow.add(hintIndex);
+            saveOpenedHints(openedNow);
+            card.classList.add("open");
+            updateHintProgress();
+            createHearts(14);
+          } else {
+            card.classList.toggle("open");
+          }
+        });
+      });
+
+      updateHintProgress();
+    }
+
+    els.resetHintsBtn.addEventListener("click", () => {
+      localStorage.removeItem(storageKey("hintOrder"));
+      localStorage.removeItem(storageKey("openedHints"));
+      renderHints();
+      initAnimations(true);
+      createHearts(18);
+    });
+
+    els.finalHeartsBtn.addEventListener("click", () => {
+      createHearts(30);
+    });
+
+    function createHearts(count = 16) {
+      if (prefersReducedMotion) return;
+
+      const maxCount = Math.min(count, 36);
+
+      for (let i = 0; i < maxCount; i += 1) {
+        const heart = document.createElement("span");
+        heart.className = "heart";
+        heart.textContent = Math.random() > 0.55 ? "♡" : "♥";
+
+        const startX = Math.random() * 100;
+        const drift = (Math.random() * 140 - 70).toFixed(0);
+        const duration = (2.2 + Math.random() * 1.5).toFixed(2);
+        const delay = (Math.random() * 0.35).toFixed(2);
+        const size = (16 + Math.random() * 15).toFixed(0);
+
+        heart.style.left = `${startX}%`;
+        heart.style.setProperty("--drift", `${drift}px`);
+        heart.style.setProperty("--duration", `${duration}s`);
+        heart.style.animationDelay = `${delay}s`;
+        heart.style.fontSize = `${size}px`;
+
+        els.heartLayer.appendChild(heart);
+
+        window.setTimeout(() => {
+          heart.remove();
+        }, (Number(duration) + Number(delay)) * 1000 + 200);
+      }
+    }
+
+    function initAnimations(force = false) {
+      if (prefersReducedMotion) {
+        $$(".reveal").forEach(el => el.classList.add("is-visible"));
+        return;
+      }
+
+      if (window.gsap && window.ScrollTrigger) {
         gsap.registerPlugin(ScrollTrigger);
 
-        // --- Config & Data ---
-        const SITE_PASSWORD = "147070";
-        const UNLOCK_DATE = new Date("2026-07-29T16:00:00").getTime();
-        
-        // טקסט הברכה. רווח כפול יפצל את הברכה לכרטיסיות נפרדות.
-        const BLESSING_TEXT = `
-שחר פריד היפה שלי,
-
-מזל טוב ליום ההולדת ה-20! 
-איזה גיל מרגש, מחליפים קידומת.
-
-[כאן תוכל להכניס את שאר הפסקאות של הברכה שלך]
-
-כל פסקה שתופרד בשורת רווח,
-תופיע באופן אוטומטי בכרטיסייה נפרדת ותיכנס באנימציה נעימה.
-
-אוהב המון, 
-אני.
-        `.trim();
-
-        const moments = [
-            { name: "ראש השנה", img: "assets/places/rosh-hashana.jpg", cap: "ראש השנה יחד" },
-            { name: "מסיבה אחרונה", img: "assets/places/party.jpg", cap: "מסיבה אחרונה שלנו" },
-            { name: "הקפצות", img: "assets/places/jump.jpg", cap: "הקפצות וצחוקים" },
-            { name: "ביקורים בבסיס", img: "assets/places/base.jpg", cap: "ביקורים בבסיס" },
-            { name: "נסיעות", img: "assets/places/drive.jpg", cap: "נסיעות משותפות" },
-            { name: "בית", img: "assets/places/home.jpg", cap: "הרגעים השקטים בבית" }
-            // הוסף עוד בהמשך כאן
-        ];
-
-        const compliments = [
-            "הכי יפה בעיר (ובכל מקום אחר)",
-            "מצחיקה ברמות שקשה לתאר",
-            "יש לך את הלב הכי ענק שיש",
-            "תמיד יודעת להרים אותי",
-            "החברה הכי טובה שיכולתי לבקש",
-            "אחת ויחידה, אין עוד כמוך",
-            "החיוך שלך עושה לי את היום"
-        ];
-
-        const hints = [
-            "איפה שעולים האחוזים",
-            "לא כל הנוצץ זהב, או שכן",
-            "יש לי הרבה דלתות אבל אף אחת לא מובילה החוצה",
-            "ביקרתי בי מקודם אבל במקום אחר",
-            "אל תשכחי לקחת אותי לפני שיוצאים",
-            "____ מי הכי יפה בעיר ?",
-            "כאן מתחיל כל בוקר",
-            "כשעייפים מגיעים אליי",
-            "איפה שהשמיים נכנסים לחדר",
-            "לפעמיים חם לפעמים טעים",
-            "אם הייתי יכול לדבר הייתי אומר לילה טוב",
-            "תמיד לשים לפני שיוצאים",
-            "אני קטן ועוזר לסדר הרבה",
-            "בלעדי קשה לצאת מהבית",
-            "חצי במטבח חצי בסלון",
-            "כולם אוהבים לשבת שם",
-            "בימים חמים אני עובד עוד",
-            "הכי חשוב לנסיעות לצבא",
-            "כל מי שרוצה אוויר הולך לשם",
-            "המקום עם הכי הרבה ידע שבו מתחיל כל סיפור ….."
-        ];
-
-        // --- Application Logic ---
-        
-        const urlParams = new URLSearchParams(window.location.search);
-        const isPreview = urlParams.get('preview') === '1';
-
-        function checkPassword() {
-            const val = document.getElementById('pwd-input').value;
-            if (val === SITE_PASSWORD) {
-                document.getElementById('password-screen').classList.add('hidden');
-                checkDateLimit();
-            } else {
-                document.getElementById('pwd-error').style.display = 'block';
-            }
+        if (force) {
+          ScrollTrigger.getAll().forEach(trigger => trigger.kill());
         }
 
-        function checkDateLimit() {
-            if (isPreview) {
-                initSite();
-                return;
-            }
+        $$(".reveal").forEach((el) => {
+          if (el.dataset.animated === "1" && !force) return;
+          el.dataset.animated = "1";
 
-            const now = new Date().getTime();
-            if (now >= UNLOCK_DATE) {
-                initSite();
-            } else {
-                document.getElementById('countdown-screen').classList.remove('hidden');
-                startTimer();
-            }
-        }
+          const effect = el.dataset.effect || "fade-up";
 
-        function startTimer() {
-            const timerEl = document.getElementById('timer');
-            const interval = setInterval(() => {
-                const now = new Date().getTime();
-                const distance = UNLOCK_DATE - now;
+          const fromVars = {
+            opacity: 0,
+            y: 26,
+            duration: 0.72,
+            ease: "power2.out"
+          };
 
-                if (distance < 0) {
-                    clearInterval(interval);
-                    document.getElementById('countdown-screen').classList.add('hidden');
-                    initSite();
-                    return;
+          if (effect === "flip") {
+            fromVars.rotationX = -16;
+            fromVars.transformOrigin = "center top";
+          }
+
+          if (effect === "scale") {
+            fromVars.scale = 0.94;
+            fromVars.y = 12;
+          }
+
+          if (effect === "sparkle") {
+            fromVars.x = 18;
+            fromVars.y = 10;
+          }
+
+          if (effect === "finale") {
+            fromVars.scale = 0.9;
+            fromVars.y = 22;
+          }
+
+          gsap.fromTo(
+            el,
+            fromVars,
+            {
+              opacity: 1,
+              y: 0,
+              x: 0,
+              scale: 1,
+              rotationX: 0,
+              duration: 0.72,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: el,
+                start: "top 86%",
+                once: true,
+                onEnter: () => {
+                  el.classList.add("is-visible");
+
+                  if (effect === "finale" || effect === "sparkle") {
+                    createHearts(effect === "finale" ? 22 : 8);
+                  }
                 }
+              }
+            }
+          );
+        });
 
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                Normally I can help with things like this, but I don't seem to have access to that content. You can try again or ask me for something else.
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.16 });
+
+      $$(".reveal").forEach(el => observer.observe(el));
+    }
+
+    function init() {
+      setupTimeline();
+      renderBlessing();
+      renderHints();
+      initGate();
+
+      window.addEventListener("load", () => {
+        setTimeout(() => initAnimations(), 100);
+      }, { once: true });
+    }
+
+    init();
+  </script>
+</body>
+</html>
