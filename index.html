@@ -23,12 +23,10 @@
       --ink: #173f53;
       --muted: #668493;
       --white: #ffffff;
-      --card: rgba(255, 255, 255, 0.82);
       --border: rgba(70, 183, 222, 0.25);
       --shadow: 0 18px 48px rgba(41, 156, 199, 0.16);
       --shadow-soft: 0 10px 28px rgba(41, 156, 199, 0.12);
       --radius-xl: 30px;
-      --radius-lg: 22px;
       --safe-top: env(safe-area-inset-top);
       --safe-bottom: env(safe-area-inset-bottom);
     }
@@ -188,6 +186,10 @@
       font-size: 1rem;
       font-weight: 900;
       transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .btn:active {
@@ -456,29 +458,6 @@
       border-radius: 22px;
       background: #dff7ff;
       object-fit: contain;
-    }
-
-    .audio-card {
-      width: min(600px, 100%);
-      margin: 0 auto;
-      padding: 18px;
-      border-radius: 24px;
-      background: rgba(255, 255, 255, 0.74);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow-soft);
-      text-align: center;
-    }
-
-    audio {
-      width: 100%;
-      margin-top: 10px;
-    }
-
-    .ios-note {
-      margin: 12px 0 0;
-      color: rgba(23, 63, 83, 0.66);
-      font-size: 0.9rem;
-      line-height: 1.55;
     }
 
     .timeline-wrap {
@@ -751,7 +730,7 @@
     }
 
     .lightbox-panel {
-      width: min(94vw, 760px);
+      width: min(94vw, 820px);
       max-height: 90vh;
       overflow: auto;
       -webkit-overflow-scrolling: touch;
@@ -789,8 +768,14 @@
       line-height: 1;
     }
 
-    .lightbox-media {
-      min-height: 220px;
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .gallery-item {
+      min-height: 240px;
       border-radius: 22px;
       display: grid;
       place-items: center;
@@ -799,7 +784,7 @@
       border: 1px solid rgba(70, 183, 222, 0.18);
     }
 
-    .lightbox-media img {
+    .gallery-item img {
       width: 100%;
       max-height: 68vh;
       object-fit: contain;
@@ -880,6 +865,10 @@
       .section {
         padding: 40px 34px;
         margin-bottom: 42px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .hints-grid {
@@ -1017,7 +1006,6 @@
 
         <div class="hero-actions">
           <button class="btn primary" type="button" id="openSurpriseBtn">פתחי את ההפתעה</button>
-          <button class="btn secondary" type="button" id="playSongBtn">נגן את השיר</button>
         </div>
 
         <div class="scroll-hint" aria-hidden="true">גללי למטה ↓</div>
@@ -1034,27 +1022,9 @@
 
         <div class="media-card">
           <video controls playsinline preload="metadata" aria-label="סרטון ברכה">
-            <source src="assets/greeting.mp4" type="video/mp4" />
+            <source src="סרטון_ברכה.mp4" type="video/mp4" />
             הדפדפן שלך לא תומך בניגון וידאו.
           </video>
-        </div>
-      </section>
-
-      <section class="section reveal" id="musicSection">
-        <div class="section-header">
-          <span class="section-kicker">ברקע</span>
-          <h2>השיר שלנו להיום</h2>
-          <p>לחצי Play כשאת מוכנה להיכנס לאווירה.</p>
-        </div>
-
-        <div class="audio-card">
-          <audio id="songPlayer" controls preload="metadata">
-            <source src="assets/song.mp3" type="audio/mpeg" />
-            הדפדפן שלך לא תומך בניגון אודיו.
-          </audio>
-          <p class="ios-note">
-            באייפון צריך ללחוץ בעצמך על ניגון. זה בכוונה, כדי שהכול יעבוד חלק.
-          </p>
         </div>
       </section>
 
@@ -1062,18 +1032,11 @@
         <div class="section-header">
           <span class="section-kicker">הזיכרונות שלנו</span>
           <h2>רגעים ומקומות שלנו</h2>
-          <p>לחצי על רגע כדי לפתוח תמונה ותיאור. בהמשך אפשר להחליף את התמונות והטקסטים בקלות.</p>
+          <p>לחצי על רגע כדי לפתוח את התמונות שלו.</p>
         </div>
 
         <div class="timeline-wrap" aria-label="טיימליין רגעים ומקומות">
-          <div class="timeline">
-            <button class="moment-btn" type="button" data-title="ראש השנה" data-photo="assets/places/place-1.jpg" data-cap="[תיאור קצר של ראש השנה]">ראש השנה</button>
-            <button class="moment-btn" type="button" data-title="מסיבה אחרונה" data-photo="assets/places/place-2.jpg" data-cap="[תיאור קצר של המסיבה האחרונה]">מסיבה אחרונה</button>
-            <button class="moment-btn" type="button" data-title="[רגע/מקום נוסף]" data-photo="assets/places/place-3.jpg" data-cap="[תיאור קצר של רגע או מקום נוסף]">[רגע/מקום נוסף]</button>
-            <button class="moment-btn" type="button" data-title="ביקורים בבסיס" data-photo="assets/places/place-4.jpg" data-cap="[תיאור קצר של הביקורים בבסיס]">ביקורים בבסיס</button>
-            <button class="moment-btn" type="button" data-title="ניסעות" data-photo="assets/places/place-5.jpg" data-cap="[תיאור קצר של הניסעות]">ניסעות</button>
-            <button class="moment-btn" type="button" data-title="בית" data-photo="assets/places/place-6.jpg" data-cap="[תיאור קצר של הבית]">בית</button>
-          </div>
+          <div class="timeline" id="timeline"></div>
         </div>
       </section>
 
@@ -1137,7 +1100,7 @@
 
           <div class="hero-actions">
             <button class="btn primary" type="button" id="finalHeartsBtn">עוד קצת לבבות</button>
-            <a class="btn secondary" href="#top" style="text-decoration:none;">חזרה להתחלה</a>
+            <a class="btn secondary" href="#top">חזרה להתחלה</a>
           </div>
         </div>
       </section>
@@ -1152,14 +1115,10 @@
     <div class="lightbox-panel">
       <div class="lightbox-top">
         <h3 class="lightbox-title" id="lightboxTitle">רגע שלנו</h3>
-        <button class="close-btn" type="button" id="closeLightbox" aria-label="סגירת תמונה">×</button>
+        <button class="close-btn" type="button" id="closeLightbox" aria-label="סגירת גלריה">×</button>
       </div>
 
-      <div class="lightbox-media" id="lightboxMedia">
-        <img id="lightboxImg" src="" alt="" />
-        <div class="missing-photo hidden" id="missingPhoto">תמונה תעלה בהמשך</div>
-      </div>
-
+      <div class="gallery-grid" id="galleryGrid"></div>
       <p class="lightbox-caption" id="lightboxCaption"></p>
     </div>
   </div>
@@ -1210,33 +1169,58 @@
     const moments = [
       {
         title: "ראש השנה",
-        photo: "assets/places/place-1.jpg",
-        caption: "[תיאור קצר של ראש השנה]"
+        caption: "כמה רגעים מראש השנה.",
+        photos: [
+          "ראש ה2.JPG",
+          "ראשה1.JPG",
+          "ראשה3.jpg",
+          "ראשה4.jpg",
+          "ראשה5.jpg"
+        ]
       },
       {
         title: "מסיבה אחרונה",
-        photo: "assets/places/place-2.jpg",
-        caption: "[תיאור קצר של המסיבה האחרונה]"
-      },
-      {
-        title: "[רגע/מקום נוסף]",
-        photo: "assets/places/place-3.jpg",
-        caption: "[תיאור קצר של רגע או מקום נוסף]"
+        caption: "כמה רגעים מהמסיבה האחרונה.",
+        photos: [
+          "מסיבה1.JPG",
+          "מסיבה 2.JPG",
+          "מסיבה 3.JPG",
+          "מסיבה 4.jpg"
+        ]
       },
       {
         title: "ביקורים בבסיס",
-        photo: "assets/places/place-4.jpg",
-        caption: "[תיאור קצר של הביקורים בבסיס]"
+        caption: "כמה רגעים מהביקורים בבסיס.",
+        photos: [
+          "בסיס 1.JPG",
+          "בסיס 2.JPG",
+          "בסיס 3.JPG",
+          "בסיס 4.jpg",
+          "בסיס 5.jpg"
+        ]
       },
       {
-        title: "ניסעות",
-        photo: "assets/places/place-5.jpg",
-        caption: "[תיאור קצר של הניסעות]"
+        title: "נסיעות",
+        caption: "כמה רגעים מהנסיעות.",
+        photos: [
+          "נסיעות.JPG",
+          "נסיעות 2.JPG",
+          "נסיעות 3.PNG",
+          "נסיעות 4.jpg"
+        ]
       },
       {
         title: "בית",
-        photo: "assets/places/place-6.jpg",
-        caption: "[תיאור קצר של הבית]"
+        caption: "כמה רגעים מהבית.",
+        photos: [
+          "בית1.jpg",
+          "בית2.jpg",
+          "בית3.jpg",
+          "בית4.jpg",
+          "בית 5.jpg",
+          "בית6.jpg",
+          "בית 7.JPG"
+        ]
       }
     ];
 
@@ -1282,8 +1266,7 @@
       minutes: $("#minutes"),
       seconds: $("#seconds"),
       openSurpriseBtn: $("#openSurpriseBtn"),
-      playSongBtn: $("#playSongBtn"),
-      songPlayer: $("#songPlayer"),
+      timeline: $("#timeline"),
       complimentBtn: $("#complimentBtn"),
       complimentOutput: $("#complimentOutput"),
       blessingList: $("#blessingList"),
@@ -1295,10 +1278,9 @@
       heartLayer: $("#heartLayer"),
       lightbox: $("#lightbox"),
       lightboxTitle: $("#lightboxTitle"),
-      lightboxImg: $("#lightboxImg"),
+      galleryGrid: $("#galleryGrid"),
       lightboxCaption: $("#lightboxCaption"),
-      closeLightbox: $("#closeLightbox"),
-      missingPhoto: $("#missingPhoto")
+      closeLightbox: $("#closeLightbox")
     };
 
     function setViewportHeight() {
@@ -1456,57 +1438,44 @@
       scrollToSection("videoSection");
     });
 
-    els.playSongBtn.addEventListener("click", async () => {
-      scrollToSection("musicSection");
+    function renderTimeline() {
+      els.timeline.innerHTML = moments.map((moment, index) => {
+        return `
+          <button class="moment-btn" type="button" data-index="${index}">
+            ${escapeHtml(moment.title)}
+          </button>
+        `;
+      }).join("");
 
-      try {
-        await els.songPlayer.play();
-        createHearts(12);
-      } catch (error) {
-      }
-    });
-
-    function setupTimeline() {
-      const buttons = $$(".moment-btn");
-
-      buttons.forEach((button, index) => {
-        const moment = moments[index];
-
-        if (moment) {
-          button.dataset.title = moment.title;
-          button.dataset.photo = moment.photo;
-          button.dataset.cap = moment.caption;
-          button.textContent = moment.title;
-        }
-
+      $$(".moment-btn", els.timeline).forEach((button) => {
         button.addEventListener("click", () => {
-          openLightbox({
-            title: button.dataset.title || "רגע שלנו",
-            photo: button.dataset.photo || "",
-            caption: button.dataset.cap || "[תיאור קצר של הרגע]"
-          });
+          const index = Number(button.dataset.index);
+          openGallery(moments[index]);
         });
       });
     }
 
-    function openLightbox({ title, photo, caption }) {
-      els.lightboxTitle.textContent = title;
-      els.lightboxCaption.textContent = caption;
-      els.lightboxImg.alt = title;
-      els.lightboxImg.classList.remove("hidden");
-      els.missingPhoto.classList.add("hidden");
+    function openGallery(moment) {
+      els.lightboxTitle.textContent = moment.title;
+      els.lightboxCaption.textContent = moment.caption || "";
 
-      els.lightboxImg.onerror = () => {
-        els.lightboxImg.classList.add("hidden");
-        els.missingPhoto.classList.remove("hidden");
-      };
+      els.galleryGrid.innerHTML = moment.photos.map((photo, index) => {
+        return `
+          <div class="gallery-item">
+            <img src="${escapeAttribute(photo)}" alt="${escapeAttribute(moment.title + " תמונה " + (index + 1))}" loading="lazy" />
+          </div>
+        `;
+      }).join("");
 
-      els.lightboxImg.onload = () => {
-        els.lightboxImg.classList.remove("hidden");
-        els.missingPhoto.classList.add("hidden");
-      };
+      $$("img", els.galleryGrid).forEach((img) => {
+        img.addEventListener("error", () => {
+          const parent = img.closest(".gallery-item");
+          if (parent) {
+            parent.innerHTML = `<div class="missing-photo">תמונה תעלה בהמשך</div>`;
+          }
+        }, { once: true });
+      });
 
-      els.lightboxImg.src = photo;
       els.lightbox.classList.remove("hidden");
       els.body.classList.add("no-scroll");
       createHearts(8);
@@ -1515,7 +1484,7 @@
     function closeLightbox() {
       els.lightbox.classList.add("hidden");
       els.body.classList.remove("no-scroll");
-      els.lightboxImg.src = "";
+      els.galleryGrid.innerHTML = "";
     }
 
     els.closeLightbox.addEventListener("click", closeLightbox);
@@ -1593,6 +1562,10 @@
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
+    }
+
+    function escapeAttribute(text) {
+      return escapeHtml(text);
     }
 
     function shuffle(array) {
@@ -1832,7 +1805,7 @@
     }
 
     function init() {
-      setupTimeline();
+      renderTimeline();
       renderBlessing();
       renderHints();
       initGate();
