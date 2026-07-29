@@ -3,31 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#bfefff" />
-  <title>יום הולדת שמח שחר 💙</title>
+  <meta name="theme-color" content="#d9f6ff" />
+  <title>יום הולדת שמח שחר</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800;900&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --sky-50: #f4fcff;
-      --sky-100: #e5f8ff;
-      --sky-200: #c8f0ff;
-      --sky-300: #9ee3fb;
-      --sky-400: #63ccef;
-      --sky-500: #35b7df;
-      --sky-700: #157fa3;
-      --ink: #17445a;
-      --muted: #5f8291;
+      --blue-50: #f5fcff;
+      --blue-100: #e6f8ff;
+      --blue-200: #c9effc;
+      --blue-300: #a8e4f7;
+      --blue-400: #74d1ef;
+      --blue-500: #3bb8df;
+      --blue-600: #2097bf;
+      --blue-700: #15789b;
+      --ink: #173f53;
+      --muted: #668493;
       --white: #ffffff;
-      --card: rgba(255, 255, 255, 0.84);
-      --shadow: 0 18px 45px rgba(34, 146, 188, 0.16);
-      --shadow-soft: 0 10px 28px rgba(34, 146, 188, 0.12);
+      --card: rgba(255, 255, 255, 0.82);
+      --border: rgba(70, 183, 222, 0.25);
+      --shadow: 0 18px 48px rgba(41, 156, 199, 0.16);
+      --shadow-soft: 0 10px 28px rgba(41, 156, 199, 0.12);
       --radius-xl: 30px;
       --radius-lg: 22px;
-      --radius-md: 16px;
       --safe-top: env(safe-area-inset-top);
       --safe-bottom: env(safe-area-inset-bottom);
     }
@@ -38,9 +39,9 @@
     }
 
     html {
-      scroll-behavior: smooth;
       min-height: 100%;
-      background: var(--sky-50);
+      background: var(--blue-50);
+      scroll-behavior: smooth;
     }
 
     body {
@@ -49,11 +50,12 @@
       min-height: calc(var(--vh, 1vh) * 100);
       font-family: "Heebo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--ink);
-      background:
-        radial-gradient(circle at 18% 12%, rgba(158, 227, 251, 0.55), transparent 34%),
-        radial-gradient(circle at 82% 8%, rgba(200, 240, 255, 0.75), transparent 30%),
-        linear-gradient(180deg, #f7fdff 0%, #eaf9ff 45%, #ffffff 100%);
       overflow-x: hidden;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(116, 209, 239, 0.48), transparent 34%),
+        radial-gradient(circle at 92% 20%, rgba(201, 239, 252, 0.82), transparent 32%),
+        radial-gradient(circle at 50% 100%, rgba(230, 248, 255, 0.92), transparent 45%),
+        linear-gradient(180deg, #f8fdff 0%, #eefaff 45%, #ffffff 100%);
     }
 
     body.no-scroll {
@@ -61,19 +63,19 @@
     }
 
     button,
-    input,
-    textarea {
+    input {
       font-family: inherit;
     }
 
     button {
       cursor: pointer;
+      touch-action: manipulation;
     }
 
     img,
     video {
-      max-width: 100%;
       display: block;
+      max-width: 100%;
     }
 
     .hidden {
@@ -84,37 +86,34 @@
       position: absolute;
       width: 1px;
       height: 1px;
-      padding: 0;
-      margin: -1px;
       overflow: hidden;
       clip: rect(0, 0, 0, 0);
       white-space: nowrap;
-      border: 0;
     }
 
     .screen {
       position: fixed;
       inset: 0;
+      z-index: 50;
       min-height: 100vh;
       min-height: calc(var(--vh, 1vh) * 100);
-      padding: calc(24px + var(--safe-top)) 18px calc(24px + var(--safe-bottom));
       display: grid;
       place-items: center;
-      z-index: 50;
+      padding: calc(22px + var(--safe-top)) 18px calc(22px + var(--safe-bottom));
       background:
-        radial-gradient(circle at top left, rgba(158, 227, 251, 0.74), transparent 34%),
-        radial-gradient(circle at bottom right, rgba(229, 248, 255, 0.92), transparent 38%),
-        linear-gradient(135deg, #f9feff, #e8f9ff);
+        radial-gradient(circle at top right, rgba(116, 209, 239, 0.45), transparent 32%),
+        radial-gradient(circle at bottom left, rgba(230, 248, 255, 0.96), transparent 42%),
+        linear-gradient(145deg, #fafdff, #eaf9ff);
     }
 
     .gate-card,
     .lock-card {
       width: min(92vw, 430px);
-      background: rgba(255, 255, 255, 0.88);
-      border: 1px solid rgba(99, 204, 239, 0.28);
+      padding: 28px 20px;
       border-radius: var(--radius-xl);
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border);
       box-shadow: var(--shadow);
-      padding: 28px 22px;
       text-align: center;
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
@@ -127,8 +126,8 @@
       display: grid;
       place-items: center;
       margin: 0 auto 14px;
-      background: linear-gradient(145deg, #ffffff, #c8f0ff);
-      color: var(--sky-700);
+      background: linear-gradient(145deg, #ffffff, var(--blue-200));
+      color: var(--blue-700);
       font-size: 34px;
       box-shadow: var(--shadow-soft);
     }
@@ -136,9 +135,9 @@
     .gate-card h1,
     .lock-card h1 {
       margin: 0 0 8px;
-      font-size: clamp(2rem, 9vw, 3rem);
-      line-height: 1.05;
-      color: var(--ink);
+      font-size: clamp(2rem, 8vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
     }
 
     .gate-card p,
@@ -146,46 +145,37 @@
       margin: 0 auto 18px;
       color: var(--muted);
       line-height: 1.65;
-      font-size: 1rem;
     }
 
     .password-row {
       display: grid;
       gap: 12px;
-      margin-top: 20px;
+      margin-top: 18px;
     }
 
     .password-input {
       width: 100%;
-      border: 1px solid rgba(21, 127, 163, 0.18);
-      border-radius: 18px;
       padding: 15px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(21, 120, 155, 0.18);
+      background: rgba(255, 255, 255, 0.94);
+      color: var(--ink);
       font-size: 1.08rem;
       text-align: center;
-      color: var(--ink);
-      background: rgba(255, 255, 255, 0.9);
       outline: none;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
     }
 
     .password-input:focus {
-      border-color: rgba(53, 183, 223, 0.75);
-      box-shadow: 0 0 0 4px rgba(99, 204, 239, 0.18);
+      border-color: rgba(59, 184, 223, 0.75);
+      box-shadow: 0 0 0 4px rgba(116, 209, 239, 0.18);
     }
 
     .error-text {
       min-height: 24px;
-      margin: 2px 0 0;
+      margin: 0;
       color: #b42318;
       font-size: 0.95rem;
-      font-weight: 500;
-    }
-
-    .note {
-      margin-top: 14px;
-      font-size: 0.84rem;
-      color: rgba(23, 68, 90, 0.68);
-      line-height: 1.55;
+      font-weight: 700;
     }
 
     .btn {
@@ -193,12 +183,11 @@
       border-radius: 999px;
       padding: 13px 20px;
       color: var(--ink);
-      background: linear-gradient(135deg, #ffffff, var(--sky-200));
+      background: linear-gradient(135deg, #ffffff, var(--blue-200));
       box-shadow: var(--shadow-soft);
       font-size: 1rem;
-      font-weight: 800;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-      touch-action: manipulation;
+      font-weight: 900;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
     }
 
     .btn:active {
@@ -207,60 +196,60 @@
 
     .btn:hover {
       filter: brightness(1.02);
-      box-shadow: 0 14px 30px rgba(34, 146, 188, 0.18);
+      box-shadow: 0 14px 30px rgba(41, 156, 199, 0.18);
     }
 
     .btn.primary {
       color: #ffffff;
-      background: linear-gradient(135deg, var(--sky-500), #7bd8f4);
-      text-shadow: 0 1px 0 rgba(0,0,0,0.08);
+      background: linear-gradient(135deg, var(--blue-600), var(--blue-400));
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
     }
 
     .btn.secondary {
-      background: rgba(255, 255, 255, 0.88);
-      border: 1px solid rgba(99, 204, 239, 0.34);
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border);
     }
 
     .btn.small {
       padding: 10px 14px;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
     }
 
     .countdown {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 9px;
-      margin: 20px 0 16px;
+      margin: 22px 0 4px;
       direction: ltr;
     }
 
     .time-box {
-      background: rgba(255, 255, 255, 0.76);
-      border: 1px solid rgba(99, 204, 239, 0.28);
-      border-radius: 18px;
       padding: 12px 6px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
     }
 
     .time-box strong {
       display: block;
-      font-size: clamp(1.35rem, 7vw, 2rem);
+      color: var(--blue-700);
+      font-size: clamp(1.3rem, 7vw, 2rem);
       line-height: 1;
-      color: var(--sky-700);
     }
 
     .time-box span {
       display: block;
       margin-top: 7px;
-      font-size: 0.78rem;
       color: var(--muted);
+      font-size: 0.78rem;
       direction: rtl;
     }
 
     .site {
       opacity: 0;
       transform: translateY(10px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transition: opacity 0.55s ease, transform 0.55s ease;
     }
 
     .site.ready {
@@ -272,9 +261,9 @@
       position: relative;
       min-height: 100vh;
       min-height: calc(var(--vh, 1vh) * 100);
-      padding: calc(42px + var(--safe-top)) 18px calc(34px + var(--safe-bottom));
       display: grid;
       align-items: center;
+      padding: calc(42px + var(--safe-top)) 18px calc(34px + var(--safe-bottom));
       overflow: hidden;
     }
 
@@ -282,21 +271,21 @@
       content: "";
       position: absolute;
       inset: 14px;
+      z-index: 0;
       border-radius: 34px;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.78), rgba(255,255,255,0.44)),
-        radial-gradient(circle at 22% 12%, rgba(99, 204, 239, 0.18), transparent 38%);
-      border: 1px solid rgba(99, 204, 239, 0.22);
-      z-index: 0;
+        linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.42)),
+        radial-gradient(circle at 22% 12%, rgba(116, 209, 239, 0.18), transparent 38%);
+      border: 1px solid var(--border);
     }
 
     .floating-bubble {
       position: absolute;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.58);
-      border: 1px solid rgba(99,204,239,0.28);
-      box-shadow: var(--shadow-soft);
       z-index: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
       animation: floaty 8s ease-in-out infinite;
     }
 
@@ -324,8 +313,12 @@
     }
 
     @keyframes floaty {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-16px); }
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-16px);
+      }
     }
 
     .hero-inner {
@@ -340,30 +333,30 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
+      margin-bottom: 16px;
       padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.78);
-      border: 1px solid rgba(99,204,239,0.28);
-      color: var(--sky-700);
-      font-weight: 800;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid var(--border);
+      color: var(--blue-700);
+      font-weight: 900;
       box-shadow: var(--shadow-soft);
-      margin-bottom: 16px;
     }
 
     .hero h1 {
       margin: 0;
-      font-size: clamp(3.3rem, 17vw, 7.6rem);
-      letter-spacing: -0.05em;
-      line-height: 0.92;
       color: var(--ink);
+      font-size: clamp(3.3rem, 17vw, 7.6rem);
+      line-height: 0.92;
+      letter-spacing: -0.055em;
       text-wrap: balance;
     }
 
     .hero-subtitle {
       margin: 18px auto 0;
-      font-size: clamp(1.1rem, 4.8vw, 1.55rem);
       color: var(--muted);
-      font-weight: 600;
+      font-size: clamp(1.1rem, 4.8vw, 1.55rem);
+      font-weight: 700;
     }
 
     .hero-message {
@@ -371,11 +364,10 @@
       margin: 20px auto 0;
       padding: 18px;
       border-radius: 24px;
-      background: rgba(255,255,255,0.7);
-      border: 1px solid rgba(99,204,239,0.24);
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid var(--border);
       line-height: 1.8;
       box-shadow: var(--shadow-soft);
-      color: var(--ink);
     }
 
     .hero-actions {
@@ -388,14 +380,18 @@
 
     .scroll-hint {
       margin-top: 28px;
-      color: rgba(23, 68, 90, 0.68);
+      color: rgba(23, 63, 83, 0.65);
       font-size: 0.95rem;
       animation: nudge 1.8s ease-in-out infinite;
     }
 
     @keyframes nudge {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(7px); }
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(7px);
+      }
     }
 
     main {
@@ -410,32 +406,32 @@
       padding: 28px 18px;
       border-radius: var(--radius-xl);
       background: rgba(255, 255, 255, 0.68);
-      border: 1px solid rgba(99, 204, 239, 0.22);
+      border: 1px solid var(--border);
       box-shadow: var(--shadow);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
     }
 
     .section-header {
-      text-align: center;
-      margin: 0 auto 22px;
       width: min(720px, 100%);
+      margin: 0 auto 22px;
+      text-align: center;
     }
 
     .section-kicker {
       display: inline-block;
       margin-bottom: 8px;
-      color: var(--sky-700);
+      color: var(--blue-700);
       font-size: 0.94rem;
-      font-weight: 800;
+      font-weight: 900;
     }
 
     .section h2 {
       margin: 0;
+      color: var(--ink);
       font-size: clamp(1.75rem, 7vw, 3rem);
       line-height: 1.12;
       letter-spacing: -0.03em;
-      color: var(--ink);
     }
 
     .section-header p {
@@ -449,8 +445,8 @@
       margin: 0 auto;
       padding: 12px;
       border-radius: 30px;
-      background: rgba(255,255,255,0.76);
-      border: 1px solid rgba(99,204,239,0.28);
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
     }
 
@@ -467,8 +463,8 @@
       margin: 0 auto;
       padding: 18px;
       border-radius: 24px;
-      background: rgba(255,255,255,0.72);
-      border: 1px solid rgba(99,204,239,0.24);
+      background: rgba(255, 255, 255, 0.74);
+      border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
       text-align: center;
     }
@@ -480,8 +476,8 @@
 
     .ios-note {
       margin: 12px 0 0;
+      color: rgba(23, 63, 83, 0.66);
       font-size: 0.9rem;
-      color: rgba(23, 68, 90, 0.68);
       line-height: 1.55;
     }
 
@@ -502,15 +498,15 @@
     .moment-btn {
       flex: 0 0 auto;
       min-width: 138px;
-      border: 1px solid rgba(99,204,239,0.34);
-      border-radius: 999px;
       padding: 13px 16px;
-      background: rgba(255,255,255,0.88);
+      border-radius: 999px;
+      border: 1px solid rgba(70, 183, 222, 0.34);
+      background: rgba(255, 255, 255, 0.9);
       color: var(--ink);
       box-shadow: var(--shadow-soft);
-      font-weight: 800;
       font-size: 0.98rem;
-      transition: transform 0.2s ease, background 0.2s ease;
+      font-weight: 900;
+      transition: transform 0.18s ease, background 0.18s ease;
     }
 
     .moment-btn:active {
@@ -518,7 +514,7 @@
     }
 
     .moment-btn:hover {
-      background: var(--sky-100);
+      background: var(--blue-100);
     }
 
     .compliment-card {
@@ -526,8 +522,8 @@
       margin: 0 auto;
       padding: 24px 18px;
       border-radius: 26px;
-      background: rgba(255,255,255,0.76);
-      border: 1px solid rgba(99,204,239,0.28);
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
       text-align: center;
     }
@@ -539,18 +535,18 @@
       place-items: center;
       padding: 16px;
       border-radius: 22px;
-      background: linear-gradient(135deg, #ffffff, var(--sky-100));
-      color: var(--sky-700);
-      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff, var(--blue-100));
+      color: var(--blue-700);
       font-size: clamp(1.2rem, 5vw, 1.8rem);
+      font-weight: 900;
       line-height: 1.35;
     }
 
     .blessing-list {
-      display: grid;
-      gap: 16px;
       width: min(790px, 100%);
       margin: 0 auto;
+      display: grid;
+      gap: 16px;
     }
 
     .blessing-card {
@@ -558,10 +554,10 @@
       overflow: hidden;
       padding: 22px 18px;
       border-radius: 26px;
-      background: rgba(255,255,255,0.8);
-      border: 1px solid rgba(99,204,239,0.24);
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
-      line-height: 1.9;
+      line-height: 1.95;
       font-size: 1.04rem;
       white-space: pre-wrap;
       transform-origin: center;
@@ -571,7 +567,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(120deg, transparent 0%, rgba(200,240,255,0.55) 45%, transparent 76%);
+      background: linear-gradient(120deg, transparent 0%, rgba(201, 239, 252, 0.55) 45%, transparent 76%);
       transform: translateX(110%);
       pointer-events: none;
     }
@@ -581,8 +577,12 @@
     }
 
     @keyframes shine {
-      from { transform: translateX(110%); }
-      to { transform: translateX(-110%); }
+      from {
+        transform: translateX(110%);
+      }
+      to {
+        transform: translateX(-110%);
+      }
     }
 
     .hints-top {
@@ -597,24 +597,24 @@
       width: min(520px, 100%);
       padding: 12px;
       border-radius: 20px;
-      background: rgba(255,255,255,0.76);
-      border: 1px solid rgba(99,204,239,0.22);
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
     }
 
     .progress-label {
       margin: 0 0 8px;
-      font-size: 0.95rem;
       color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 800;
       text-align: center;
-      font-weight: 700;
     }
 
     .progress-track {
       width: 100%;
       height: 12px;
       border-radius: 999px;
-      background: rgba(200,240,255,0.8);
+      background: rgba(201, 239, 252, 0.8);
       overflow: hidden;
     }
 
@@ -622,16 +622,16 @@
       width: 0%;
       height: 100%;
       border-radius: inherit;
-      background: linear-gradient(90deg, var(--sky-400), var(--sky-700));
+      background: linear-gradient(90deg, var(--blue-400), var(--blue-700));
       transition: width 0.35s ease;
     }
 
     .hints-grid {
+      width: min(900px, 100%);
+      margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
-      width: min(900px, 100%);
-      margin: 0 auto;
     }
 
     .hint-card {
@@ -642,10 +642,10 @@
     .hint-inner {
       position: relative;
       width: 100%;
-      height: 100%;
       min-height: 154px;
-      border: 0;
+      height: 100%;
       padding: 0;
+      border: 0;
       background: transparent;
       transform-style: preserve-3d;
       transition: transform 0.55s ease;
@@ -663,52 +663,55 @@
       place-items: center;
       padding: 14px;
       border-radius: 24px;
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      border: 1px solid rgba(99,204,239,0.28);
+      border: 1px solid var(--border);
       box-shadow: var(--shadow-soft);
       text-align: center;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
     .hint-front {
       background:
-        radial-gradient(circle at 18% 18%, rgba(255,255,255,0.85), transparent 28%),
+        radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.86), transparent 28%),
         linear-gradient(135deg, #dff7ff, #ffffff);
     }
 
     .hint-back {
-      background: rgba(255,255,255,0.88);
+      background: rgba(255, 255, 255, 0.9);
       transform: rotateY(180deg);
     }
 
     .hint-num {
       display: block;
-      color: var(--sky-700);
-      font-size: 0.9rem;
-      font-weight: 800;
       margin-bottom: 7px;
+      color: var(--blue-700);
+      font-size: 0.9rem;
+      font-weight: 900;
     }
 
     .hint-title {
+      display: block;
       margin: 0;
-      font-size: 1.1rem;
-      font-weight: 900;
       color: var(--ink);
+      font-size: 1.08rem;
+      font-weight: 900;
       line-height: 1.25;
     }
 
     .hint-action {
+      display: block;
       margin-top: 9px;
       color: var(--muted);
-      font-weight: 700;
-      font-size: 0.88rem;
+      font-size: 0.86rem;
+      font-weight: 800;
     }
 
     .hint-text {
+      display: block;
       margin: 0;
       color: var(--ink);
       font-size: clamp(0.98rem, 4vw, 1.12rem);
-      font-weight: 800;
+      font-weight: 900;
       line-height: 1.5;
       overflow-wrap: anywhere;
     }
@@ -718,8 +721,8 @@
       margin: 0 auto;
       padding: 28px 18px;
       border-radius: 28px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(229,248,255,0.84));
-      border: 1px solid rgba(99,204,239,0.28);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(230, 248, 255, 0.84));
+      border: 1px solid var(--border);
       box-shadow: var(--shadow);
       text-align: center;
     }
@@ -729,10 +732,10 @@
     }
 
     .final-card p {
+      width: min(560px, 100%);
       margin: 14px auto 0;
       color: var(--muted);
       line-height: 1.8;
-      width: min(560px, 100%);
     }
 
     .lightbox {
@@ -752,10 +755,10 @@
       max-height: 90vh;
       overflow: auto;
       -webkit-overflow-scrolling: touch;
-      background: rgba(255,255,255,0.94);
-      border: 1px solid rgba(200,240,255,0.8);
-      border-radius: 28px;
       padding: 14px;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(201, 239, 252, 0.8);
       box-shadow: 0 24px 70px rgba(5, 48, 69, 0.28);
     }
 
@@ -769,9 +772,9 @@
 
     .lightbox-title {
       margin: 0;
+      color: var(--ink);
       font-size: 1.1rem;
       font-weight: 900;
-      color: var(--ink);
     }
 
     .close-btn {
@@ -779,21 +782,21 @@
       height: 42px;
       border: 0;
       border-radius: 50%;
-      background: var(--sky-100);
+      background: var(--blue-100);
       color: var(--ink);
       font-size: 24px;
+      font-weight: 800;
       line-height: 1;
-      font-weight: 700;
     }
 
     .lightbox-media {
       min-height: 220px;
       border-radius: 22px;
-      background: linear-gradient(135deg, var(--sky-100), #ffffff);
       display: grid;
       place-items: center;
       overflow: hidden;
-      border: 1px solid rgba(99,204,239,0.18);
+      background: linear-gradient(135deg, var(--blue-100), #ffffff);
+      border: 1px solid rgba(70, 183, 222, 0.18);
     }
 
     .lightbox-media img {
@@ -805,9 +808,9 @@
 
     .missing-photo {
       padding: 42px 20px;
-      text-align: center;
       color: var(--muted);
-      font-weight: 800;
+      font-weight: 900;
+      text-align: center;
     }
 
     .lightbox-caption {
@@ -815,8 +818,8 @@
       color: var(--ink);
       line-height: 1.7;
       font-size: 1rem;
+      font-weight: 700;
       text-align: center;
-      font-weight: 600;
     }
 
     .heart-layer {
@@ -830,9 +833,9 @@
     .heart {
       position: absolute;
       bottom: -30px;
+      color: var(--blue-500);
+      opacity: 0.85;
       font-size: 18px;
-      color: var(--sky-500);
-      opacity: 0.8;
       animation: heartRise var(--duration, 2.8s) ease-out forwards;
       will-change: transform, opacity;
     }
@@ -864,9 +867,9 @@
 
     footer {
       padding: 10px 18px calc(34px + var(--safe-bottom));
-      text-align: center;
-      color: rgba(23, 68, 90, 0.6);
+      color: rgba(23, 63, 83, 0.6);
       font-size: 0.9rem;
+      text-align: center;
     }
 
     @media (min-width: 760px) {
@@ -950,9 +953,7 @@
     <div class="gate-card">
       <div class="gate-icon" aria-hidden="true">♡</div>
       <h1 id="passwordTitle">רגע לפני ההפתעה</h1>
-      <p>
-        כדי להיכנס לאתר יום ההולדת של שחר, צריך להקליד את הסיסמה הקטנה שלנו.
-      </p>
+      <p>כדי להיכנס לאתר יום ההולדת של שחר, צריך להקליד את הסיסמה.</p>
 
       <form id="passwordForm" class="password-row" autocomplete="off">
         <label class="sr-only" for="passwordInput">סיסמה</label>
@@ -968,8 +969,6 @@
         <button class="btn primary" type="submit">כניסה להפתעה</button>
         <p class="error-text" id="passwordError" role="alert"></p>
       </form>
-
-
     </div>
   </section>
 
@@ -977,9 +976,7 @@
     <div class="lock-card">
       <div class="gate-icon" aria-hidden="true">⏳</div>
       <h1 id="lockTitle">עוד לא הגיע הזמן</h1>
-      <p>
-        ההפתעה כבר מוכנה, אבל היא תיפתח בדיוק בזמן.
-      </p>
+      <p>ההפתעה כבר מוכנה, אבל היא תיפתח בדיוק בזמן.</p>
 
       <div class="countdown" aria-label="ספירה לאחור לפתיחת האתר">
         <div class="time-box">
@@ -999,8 +996,6 @@
           <span>שניות</span>
         </div>
       </div>
-
-
     </div>
   </section>
 
@@ -1034,19 +1029,11 @@
         <div class="section-header">
           <span class="section-kicker">קודם כל</span>
           <h2>סרטון ברכה קטן</h2>
-          <p>
-            בלי הפעלה אוטומטית, כי אייפון אוהב שמבקשים ממנו יפה.
-          </p>
+          <p>בלי הפעלה אוטומטית, כדי שיעבוד טוב באייפון.</p>
         </div>
 
         <div class="media-card">
-          <video
-            controls
-            playsinline
-            preload="metadata"
-            poster=""
-            aria-label="סרטון ברכה"
-          >
+          <video controls playsinline preload="metadata" aria-label="סרטון ברכה">
             <source src="assets/greeting.mp4" type="video/mp4" />
             הדפדפן שלך לא תומך בניגון וידאו.
           </video>
@@ -1057,9 +1044,7 @@
         <div class="section-header">
           <span class="section-kicker">ברקע</span>
           <h2>השיר שלנו להיום</h2>
-          <p>
-            לחצי Play כשאת מוכנה להיכנס לאווירה.
-          </p>
+          <p>לחצי Play כשאת מוכנה להיכנס לאווירה.</p>
         </div>
 
         <div class="audio-card">
@@ -1068,7 +1053,7 @@
             הדפדפן שלך לא תומך בניגון אודיו.
           </audio>
           <p class="ios-note">
-            באייפון צריך ללחוץ בעצמך על ניגון. זה בכוונה, כדי שהכול יעבוד חלק ב־Safari.
+            באייפון צריך ללחוץ בעצמך על ניגון. זה בכוונה, כדי שהכול יעבוד חלק.
           </p>
         </div>
       </section>
@@ -1077,18 +1062,16 @@
         <div class="section-header">
           <span class="section-kicker">הזיכרונות שלנו</span>
           <h2>רגעים ומקומות שלנו</h2>
-          <p>
-            לחצי על רגע כדי לפתוח תמונה ותיאור. בהמשך אפשר להחליף את התמונות והטקסטים בקלות.
-          </p>
+          <p>לחצי על רגע כדי לפתוח תמונה ותיאור. בהמשך אפשר להחליף את התמונות והטקסטים בקלות.</p>
         </div>
 
         <div class="timeline-wrap" aria-label="טיימליין רגעים ומקומות">
           <div class="timeline">
             <button class="moment-btn" type="button" data-title="ראש השנה" data-photo="assets/places/place-1.jpg" data-cap="[תיאור קצר של ראש השנה]">ראש השנה</button>
             <button class="moment-btn" type="button" data-title="מסיבה אחרונה" data-photo="assets/places/place-2.jpg" data-cap="[תיאור קצר של המסיבה האחרונה]">מסיבה אחרונה</button>
-            <button class="moment-btn" type="button" data-title="הקפצות" data-photo="assets/places/place-3.jpg" data-cap="[תיאור קצר של ההקפצות]">הקפצות</button>
+            <button class="moment-btn" type="button" data-title="[רגע/מקום נוסף]" data-photo="assets/places/place-3.jpg" data-cap="[תיאור קצר של רגע או מקום נוסף]">[רגע/מקום נוסף]</button>
             <button class="moment-btn" type="button" data-title="ביקורים בבסיס" data-photo="assets/places/place-4.jpg" data-cap="[תיאור קצר של הביקורים בבסיס]">ביקורים בבסיס</button>
-            <button class="moment-btn" type="button" data-title="נסיעות" data-photo="assets/places/place-5.jpg" data-cap="[תיאור קצר של הנסיעות]">נסיעות</button>
+            <button class="moment-btn" type="button" data-title="ניסעות" data-photo="assets/places/place-5.jpg" data-cap="[תיאור קצר של הניסעות]">ניסעות</button>
             <button class="moment-btn" type="button" data-title="בית" data-photo="assets/places/place-6.jpg" data-cap="[תיאור קצר של הבית]">בית</button>
           </div>
         </div>
@@ -1098,9 +1081,7 @@
         <div class="section-header">
           <span class="section-kicker">כי צריך להזכיר לך</span>
           <h2>מחולל מחמאות</h2>
-          <p>
-            כל לחיצה מזכירה עוד סיבה אחת למה את הכי את.
-          </p>
+          <p>כל לחיצה מזכירה עוד סיבה אחת למה את הכי את.</p>
         </div>
 
         <div class="compliment-card">
@@ -1115,9 +1096,7 @@
         <div class="section-header">
           <span class="section-kicker">המילים עצמן</span>
           <h2>הברכה</h2>
-          <p>
-            כאן תיכנס הברכה המלאה. שורות ריקות יהפכו אוטומטית לכרטיסים נפרדים.
-          </p>
+          <p>הברכה שלך, בדיוק כמו שהיא נכתבה.</p>
         </div>
 
         <div class="blessing-list" id="blessingList"></div>
@@ -1150,11 +1129,12 @@
       <section class="section reveal" id="finalSection">
         <div class="final-card">
           <span class="section-kicker">ולסיום</span>
-          <h2>מזל טוב אהובה שלי</h2>
+          <h2>מזל טוב אהבה שלי</h2>
           <p>
             שתהיה לך שנה מצחיקה, יפה, מרגשת, מלאה בדברים טובים,
             ובעיקר מלאה ברגעים שנזכור גם באתר הבא.
           </p>
+
           <div class="hero-actions">
             <button class="btn primary" type="button" id="finalHeartsBtn">עוד קצת לבבות</button>
             <a class="btn secondary" href="#top" style="text-decoration:none;">חזרה להתחלה</a>
@@ -1195,12 +1175,22 @@
       age: "20",
       birthdayDisplay: "30.7.2006",
       unlockDate: "2026-07-29T16:00:00+03:00",
-      passwordHash: "19256e0039df1f0534c059e01d641f93f20f146d7acb22325bc04ff71907cbed",
+      passwordHash: "6710faf3aa5963e294e2ee12c9a45556d8a5645bc1279bbd39ff08ec48b03ca3",
       storagePrefix: "birthday_shahar_2026_",
       previewParam: "preview"
     };
 
-    const BLESSING_TEXT = `[BLESSING_TEXT]`;
+    const BLESSING_TEXT = `שוש מאמשיקין שחר שלי 
+. קודם כל מזל טוב 20 זה כבר לא צחוק
+אני לא יודע איך לסכם בשנתיים את כל מה שעברנו ביחד, אבל אני יודע דבר אחד אני שמח שבחרתי בך כל יום מחדש. עברנו רגעים מצחיקים, רגעים פחות פשוטים, ועם כל מה שהיה, תמיד למדנו להמשיך קדימה ביחד. זה רק גרם לי להבין כמה את חשובה לי.
+אני אוהב את הלב שלך, את החיוך שלך, את השטויות שלך, ואת הדרך שלך לגרום לי להרגיש בבית גם בלי לעשות משהו מיוחד. אפילו בימים הכי רגילים, כשאני איתך הם מרגישים הרבה יותר טובים.
+אני מאחל לך שתמיד תהיי מאושרת, שתגשימי כל חלום שיש לך, שתצליחי בכל מה שתבחרי לעשות, ושלא תפסיקי להאמין בעצמך, כי אם יש מישהי שמסוגלת להשיג כל מטרה זאת את.
+תודה שאת איתי, תודה שאת מקבלת אותי כמו שאני, ותודה על כל האהבה שאת נותנת לי. אני מבטיח להמשיך להיות שם בשבילך, לצחוק איתך, לעצבן אותך קצת (כי אי אפשר בלי), ולאהוב אותך בכל יום מחדש.
+אני מקווה שהשנה הזאת תהיה השנה הכי יפה שלך עד עכשיו, ושנמשיך לצבור עוד אינסוף חוויות וזיכרונות ביחד.
+לפעמים אני חושב על כל מה שעוד מחכה לנו, וזה רק עושה לי התרגשות. יש לנו עוד כל כך הרבה דברים להספיק ביחד טיולים, חוויות, רגעים קטנים שנזכור שנים קדימה, וחלומות שעוד נגשים אחד עם השנייה. אני יודע שלא תמיד הכול יהיה פשוט, אבל אם יש משהו שהקשר שלנו הוכיח לי, זה שאנחנו יודעים לעבור הכול כשאנחנו ביחד. אני לא מאחל לעצמי שום דבר מיוחד, חוץ מזה שנמשיך לבחור אחד בשנייה כל יום מחדש, בדיוק כמו שאנחנו עושים עד היום.
+ואי אפשר בלי להגיד תודה על זה שאת מצליחה לסבול אותי, כי בוא זה לא פשוט. תודה ששרדת את כל פלוצים שלי ותודה על כל הסבלנות שלך. ואחרי כל מה שעברת השנה, עם כל הסגירות המטורפות בגלל המלחמה וכל מה שהיה מסביב, מגיע לך עכשיו ליהנות באמת, להשתחרר, לטוס, לצחוק ולעשות רק דברים שעושים לך טוב. אני רק מקווה שגם אחרי כל החופש והטיולים שלך, עדיין תסכימי לחזור אליי למרות כל השטויות שלי.
+אני מרגיש שהשנה הקרובה הולכת להיות התחלה חדשה בשביל שנינו. אני מתחיל את הלימודים, את משתחררת סוף סוף אחרי כל מה שנתת, ויוצאת להגשים חלום ולטוס קצת לראות עולם. אני יודע שמחכים לנו שינויים ואתגרים, אבל אני גם יודע שאין מישהי שאני מאמין בה יותר ממך. אני בטוח שתיהני מכל רגע, תחזרי עם מיליון חוויות וסיפורים, ושגם בתוך כל הדברים החדשים שכל אחד מאיתנו מתחיל, תמיד נמצא את הדרך להיות שם אחד בשביל השנייה
+מזל טוב אהבה שלי. אני אוהב אותך יותר ממה שמילים באמת יכולות להסביר🤍`;
 
     const compliments = [
       "הכי יפה כשאת צוחקת",
@@ -1229,9 +1219,9 @@
         caption: "[תיאור קצר של המסיבה האחרונה]"
       },
       {
-        title: "הקפצות",
+        title: "[רגע/מקום נוסף]",
         photo: "assets/places/place-3.jpg",
-        caption: "[תיאור קצר של ההקפצות]"
+        caption: "[תיאור קצר של רגע או מקום נוסף]"
       },
       {
         title: "ביקורים בבסיס",
@@ -1239,9 +1229,9 @@
         caption: "[תיאור קצר של הביקורים בבסיס]"
       },
       {
-        title: "נסיעות",
+        title: "ניסעות",
         photo: "assets/places/place-5.jpg",
-        caption: "[תיאור קצר של הנסיעות]"
+        caption: "[תיאור קצר של הניסעות]"
       },
       {
         title: "בית",
@@ -1254,23 +1244,23 @@
       "איפה שעולים האחוזים",
       "לא כל הנוצץ זהב, או שכן",
       "יש לי הרבה דלתות אבל אף אחת לא מובילה החוצה",
-      "ביקרתי בי מקודם אבל במקום אחר",
+      "מחוץ לדלת יש כמה כאלה….",
       "אל תשכחי לקחת אותי לפני שיוצאים",
-      "____ מי הכי יפה בעיר?",
+      "____ שעל הקיר מי הכי יפה בעיר ?",
       "כאן מתחיל כל בוקר",
       "כשעייפים מגיעים אליי",
       "איפה שהשמיים נכנסים לחדר",
-      "לפעמים חם לפעמים טעים",
+      "לפעמיים חם לפעמים טעים",
       "אם הייתי יכול לדבר הייתי אומר לילה טוב",
       "תמיד לשים לפני שיוצאים",
       "אני קטן ועוזר לסדר הרבה",
-      "בלעדי קשה לצאת מהבית",
-      "חצי במטבח חצי בסלון",
+      "פילטרים קטנים",
+      "צריך את זה כדי לנוח ולראות טלוויזיה",
       "כולם אוהבים לשבת שם",
-      "בימים חמים אני עובד עוד",
+      "70% מהגוף שלך מלא בזה",
       "הכי חשוב לנסיעות לצבא",
       "כל מי שרוצה אוויר הולך לשם",
-      "המקום עם הכי הרבה ידע שבו מתחיל כל סיפור…"
+      "מה עושים לפני שהולכים לישון?"
     ];
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1314,7 +1304,7 @@
     function setViewportHeight() {
       document.documentElement.style.setProperty("--vh", `${window.innerHeight * 0.01}px`);
     }
- 
+
     setViewportHeight();
     window.addEventListener("resize", setViewportHeight, { passive: true });
     window.addEventListener("orientationchange", () => {
@@ -1345,7 +1335,11 @@
       els.body.classList.add("no-scroll");
 
       setTimeout(() => {
-        els.passwordInput.focus({ preventScroll: true });
+        try {
+          els.passwordInput.focus({ preventScroll: true });
+        } catch (error) {
+          els.passwordInput.focus();
+        }
       }, 300);
     }
 
@@ -1451,7 +1445,10 @@
     function scrollToSection(id) {
       const section = document.getElementById(id);
       if (!section) return;
-      section.scrollIntoView({ behavior: prefersReducedMotion ? "auto" : "smooth", block: "start" });
+      section.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "start"
+      });
     }
 
     els.openSurpriseBtn.addEventListener("click", () => {
@@ -1466,7 +1463,6 @@
         await els.songPlayer.play();
         createHearts(12);
       } catch (error) {
-        // Safari iOS may require pressing the native audio control.
       }
     });
 
@@ -1565,30 +1561,33 @@
     els.complimentBtn.addEventListener("click", showCompliment);
 
     function renderBlessing() {
-      const fallback = `[BLESSING_TEXT]`;
+      const text = BLESSING_TEXT.trim();
 
-      const text = (BLESSING_TEXT || fallback).trim();
-      const parts = text
+      let parts = text
         .split(/\n\s*\n/g)
         .map(part => part.trim())
         .filter(Boolean);
 
-      const finalParts = parts.length ? parts : [fallback];
+      if (parts.length <= 1) {
+        parts = text
+          .split(/\n/g)
+          .map(part => part.trim())
+          .filter(Boolean);
+      }
 
-      els.blessingList.innerHTML = finalParts
-        .map((part, index) => {
-          const effect = ["fade-up", "flip", "scale", "reveal", "sparkle", "finale"][index % 6];
-          return `
-            <article class="blessing-card reveal" data-effect="${effect}">
-              ${escapeHtml(part)}
-            </article>
-          `;
-        })
-        .join("");
+      els.blessingList.innerHTML = parts.map((part, index) => {
+        const effect = ["fade-up", "flip", "scale", "reveal", "sparkle", "finale"][index % 6];
+
+        return `
+          <article class="blessing-card reveal" data-effect="${effect}">
+            ${escapeHtml(part)}
+          </article>
+        `;
+      }).join("");
     }
 
     function escapeHtml(text) {
-      return text
+      return String(text)
         .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
         .replaceAll(">", "&gt;")
@@ -1740,7 +1739,7 @@
 
         window.setTimeout(() => {
           heart.remove();
-        }, (Number(duration) + Number(delay)) * 1000 + 200);
+        }, (Number(duration) + Number(delay)) * 1000 + 250);
       }
     }
 
